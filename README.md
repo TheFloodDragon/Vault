@@ -7,7 +7,7 @@
 
 Vault is a permissions, chat, & economy API to give plugins easy hooks into.
 
-This is, of course, a fork of the original **[Vault](https://github.com/milkbowl/Vault)** project. Visit the original
+This is, of course, an updated fork of the original **[Vault](https://github.com/milkbowl/Vault)** project. Visit the original
 project for more information.
 
 All credit for the original project goes to the **[MilkBowl](https://github.com/MilkBowl)** team.
@@ -15,14 +15,14 @@ All credit for the original project goes to the **[MilkBowl](https://github.com/
 ## Features
 
 - All the features of the original Vault project
-- Removed Vault's update checker and need for config files
-- Updated to support newer versions of Minecraft
-- The VaultAPI has been implemented into this fork of Vault
-- Moved from using Maven to Gradle
-- Removed all built-in support for old permissions and chat plugins
 - Re-coded the entire project to be more efficient and easier to maintain
+- Removed Vault's update checker and need for config files
+- Updated to natively support newer versions of Minecraft
+- Removed all built-in support for old permissions and chat plugins
 - Moved existing commands under the `vault` command and revised them
 - Lombok has been implemented to reduce boilerplate code
+- Merged the VaultAPI into the project itself
+- Migrated from using Maven to Gradle
 
 ## Getting Help
 

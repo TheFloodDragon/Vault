@@ -5,9 +5,6 @@ import org.bukkit.OfflinePlayer;
 @SuppressWarnings({"deprecation", "unused"})
 public abstract class AbstractEconomy implements Economy {
 
-    public AbstractEconomy() {
-    }
-
     public boolean hasAccount(OfflinePlayer player) {
         return player.getName() != null && this.hasAccount(player.getName());
     }

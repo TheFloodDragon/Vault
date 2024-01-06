@@ -17,9 +17,6 @@ public abstract class Permission {
     protected static final Logger LOGGER = Logger.getLogger("Minecraft");
     protected Plugin plugin = null;
 
-    public Permission() {
-    }
-
     public abstract String getName();
 
     public abstract boolean isEnabled();

@@ -1,7 +1,5 @@
 package net.milkbowl.vault.util.command;
 
-import lombok.Getter;
-import lombok.Setter;
 import net.milkbowl.vault.util.MessageUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -21,8 +19,6 @@ import java.util.logging.Level;
  * @author minnymin3
  * @see <a href="https://github.com/mcardy/CommandFramework">CommandFramework GitHub</a>
  */
-@Getter
-@Setter
 @SuppressWarnings("unused")
 public class BukkitCompleter implements TabCompleter {
 

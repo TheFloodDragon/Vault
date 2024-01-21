@@ -1,5 +1,5 @@
 name: Vault
-version: '2.2.0'
+version: ${project.version}
 main: net.milkbowl.vault.Vault
 authors: [Sleaker, Cerea1, Mung3r, Kainzo, Foulest]
 api-version: 1.20

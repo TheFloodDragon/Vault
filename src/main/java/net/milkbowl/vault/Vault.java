@@ -1,6 +1,5 @@
 package net.milkbowl.vault;
 
-import lombok.Getter;
 import net.milkbowl.vault.cmds.VaultCmd;
 import net.milkbowl.vault.permission.Permission;
 import net.milkbowl.vault.permission.SuperPerms;
@@ -20,18 +19,13 @@ import java.util.logging.Level;
  * @author Foulest
  * @project Vault
  */
-@Getter
 @SuppressWarnings("unused")
 public class Vault extends JavaPlugin {
 
-    public static Vault instance;
-    public CommandFramework framework;
+    private CommandFramework framework;
 
     @Override
     public void onEnable() {
-        // Sets the instance.
-        instance = this;
-
         // Initializes the Command Framework.
         MessageUtil.log(Level.INFO, "Initializing Command Framework...");
         framework = new CommandFramework(this);

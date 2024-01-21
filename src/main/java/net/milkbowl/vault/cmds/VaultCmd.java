@@ -1,7 +1,5 @@
 package net.milkbowl.vault.cmds;
 
-import lombok.Getter;
-import lombok.Setter;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
@@ -23,8 +21,6 @@ import java.util.*;
  * @author Foulest
  * @project Vault
  */
-@Getter
-@Setter
 public class VaultCmd {
 
     @Command(name = "vault", description = "Main command for Vault.",

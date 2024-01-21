@@ -5,8 +5,9 @@ plugins {
 }
 
 group = 'net.milkbowl'
-version = '2.2.0'
-description = 'Vault'
+version = '2.3.0'
+description = project.name
+
 compileJava.options.encoding = 'UTF-8'
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
@@ -48,29 +49,55 @@ dependencies {
 
     // JetBrains Annotations - for code inspection and documentation
     // https://mvnrepository.com/artifact/org.jetbrains/annotations
-    implementation group: 'org.jetbrains', name: 'annotations', version: '24.1.0'
+    compileOnly group: 'org.jetbrains', name: 'annotations', version: '24.1.0'
 
     // Lombok - for reducing boilerplate code
     // https://projectlombok.org
-    implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
 }
 
-compileJava {
-    dependsOn('clean')
-}
-
-shadowJar {
-    archiveFileName = "${project.name}-${version}.jar"
-
-    dependencies {
-        exclude(dependency(group: 'org.projectlombok', name: 'lombok'))
+tasks {
+    shadowJar {
+        archiveFileName.set("${project.name}-${project.version}.jar")
+        minimize()
     }
 
-    minimize()
-    relocate 'org.jetbrains', 'net.milkbowl.vault.shaded.org.jetbrains'
+    compileJava {
+        dependsOn(clean)
+    }
+
+    build {
+        dependsOn(shadowJar)
+    }
+
+    processResources {
+        filesMatching('**/plugin.yml') {
+            expand(project.properties)
+        }
+    }
+
+    tasks.register('sourceJar', Jar) {
+        from sourceSets.main.allJava
+    }
+
+    jar.configure {
+        archiveClassifier = 'default'
+    }
+
+    shadowJar.configure {
+        archiveClassifier = null
+    }
 }
 
-artifacts {
-    archives shadowJar
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = "net.milkbowl.vault"
+            artifactId = project.name
+            version = project.version
+
+            from components.java
+        }
+    }
 }

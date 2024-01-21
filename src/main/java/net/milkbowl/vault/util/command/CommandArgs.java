@@ -1,7 +1,6 @@
 package net.milkbowl.vault.util.command;
 
 import lombok.Getter;
-import lombok.Setter;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -15,7 +14,6 @@ import org.jetbrains.annotations.NotNull;
  * @see <a href="https://github.com/mcardy/CommandFramework">CommandFramework GitHub</a>
  */
 @Getter
-@Setter
 @SuppressWarnings("unused")
 public class CommandArgs {
 

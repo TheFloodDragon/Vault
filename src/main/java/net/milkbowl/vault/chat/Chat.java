@@ -1,6 +1,7 @@
 package net.milkbowl.vault.chat;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
@@ -13,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
  * @author Foulest
  * @project Vault
  */
+@Getter
 @AllArgsConstructor
 @SuppressWarnings({"DeprecatedIsStillUsed", "unused"})
 public abstract class Chat {

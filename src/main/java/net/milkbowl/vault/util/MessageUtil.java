@@ -1,7 +1,5 @@
 package net.milkbowl.vault.util;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -17,11 +15,9 @@ import java.util.logging.Logger;
  * @author Foulest
  * @project Vault
  */
-@Getter
-@Setter
 public final class MessageUtil {
 
-    public static Logger logger = Bukkit.getLogger();
+    private static final Logger logger = Bukkit.getLogger();
 
     /**
      * Logs a message to the console.

@@ -77,8 +77,15 @@ publishing {
             groupId project.group
             artifactId project.name
             version project.version
-
             artifact shadowJar.archivePath
+
+            // Explicitly define that the publication depends on the shadowJar task
+            // This will replace the regular jar with the shadowJar
+            afterEvaluate {
+                tasks.named('publishMavenJavaPublicationToMavenLocal').configure {
+                    dependsOn shadowJar.archivePath
+                }
+            }
         }
     }
 }

@@ -71,22 +71,6 @@ shadowJar {
     relocate 'org.jetbrains', 'net.milkbowl.vault.shaded.org.jetbrains'
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            groupId project.group
-            artifactId project.name
-            version project.version
-            artifact shadowJar
-        }
-    }
-
-    repositories {
-        mavenLocal()
-    }
-}
-
-// Explicitly configure task dependencies
-tasks.named('publishMavenJavaPublicationToMavenLocal').configure {
-    dependsOn shadowJar
+artifacts {
+    archives shadowJar
 }

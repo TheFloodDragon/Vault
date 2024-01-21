@@ -1,30 +1,57 @@
 package net.milkbowl.vault.util;
 
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Utility class for sending messages.
+ *
+ * @author Foulest
+ * @project Vault
+ */
 @Getter
 @Setter
 public final class MessageUtil {
 
     public static Logger logger = Bukkit.getLogger();
 
-    public static void messagePlayer(@NonNull CommandSender sender, @NonNull String message) {
-        sender.sendMessage(colorize(message));
-    }
-
-    public static void log(@NonNull Level level, @NonNull String message) {
+    /**
+     * Logs a message to the console.
+     *
+     * @param level   The level to log the message at.
+     * @param message The message to log.
+     */
+    public static void log(Level level, String message) {
         logger.log(level, "[Vault] " + message);
     }
 
-    public static String colorize(@NonNull String message) {
+    /**
+     * Sends a message to the specified player.
+     *
+     * @param sender  The player to send the message to.
+     * @param message The message to send.
+     */
+    public static void messagePlayer(CommandSender sender, String @NotNull ... message) {
+        for (String line : message) {
+            sender.sendMessage(colorize(line));
+        }
+    }
+
+    /**
+     * Colorizes the specified message.
+     *
+     * @param message The message to colorize.
+     */
+    @Contract("_ -> new")
+    public static @NotNull String colorize(String message) {
         return ChatColor.translateAlternateColorCodes('&', message);
     }
 }

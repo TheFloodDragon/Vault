@@ -1,5 +1,5 @@
 name: Vault
-version: '2.0.0'
+version: '2.1.0'
 main: net.milkbowl.vault.Vault
 authors: [Sleaker, Cerea1, Mung3r, Kainzo, Foulest]
 api-version: 1.20

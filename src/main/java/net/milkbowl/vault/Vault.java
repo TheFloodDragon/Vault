@@ -1,7 +1,6 @@
 package net.milkbowl.vault;
 
 import lombok.Getter;
-import lombok.NonNull;
 import net.milkbowl.vault.cmds.VaultCmd;
 import net.milkbowl.vault.permission.Permission;
 import net.milkbowl.vault.permission.SuperPerms;
@@ -11,10 +10,18 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.ServicesManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.logging.Level;
 
+/**
+ * Main class for Vault.
+ *
+ * @author Foulest
+ * @project Vault
+ */
 @Getter
+@SuppressWarnings("unused")
 public class Vault extends JavaPlugin {
 
     public static Vault instance;
@@ -53,7 +60,7 @@ public class Vault extends JavaPlugin {
      *
      * @param commands Command to load.
      */
-    private void loadCommands(@NonNull Object... commands) {
+    private void loadCommands(Object @NotNull ... commands) {
         for (Object command : commands) {
             framework.registerCommands(command);
         }

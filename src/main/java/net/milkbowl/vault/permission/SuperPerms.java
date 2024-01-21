@@ -3,6 +3,13 @@ package net.milkbowl.vault.permission;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
+/**
+ * Vault's SuperPerms implementation; the default permissions system.
+ *
+ * @author Foulest
+ * @project Vault
+ */
+@SuppressWarnings({"unused"})
 public class SuperPerms extends Permission {
 
     public SuperPerms(Plugin plugin) {

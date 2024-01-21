@@ -1,7 +1,6 @@
 package net.milkbowl.vault.cmds;
 
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
@@ -13,16 +12,24 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.RegisteredServiceProvider;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
+/**
+ * Main command for Vault.
+ *
+ * @author Foulest
+ * @project Vault
+ */
 @Getter
 @Setter
 public class VaultCmd {
 
     @Command(name = "vault", description = "Main command for Vault.",
             permission = "vault.admin", usage = "/vault")
-    public void onCommand(@NonNull CommandArgs args) {
+    public void onCommand(@NotNull CommandArgs args) {
         CommandSender sender = args.getSender();
 
         // No additional arguments; display help menu.
@@ -120,7 +127,7 @@ public class VaultCmd {
      * @param sender The command sender
      * @param args   The command arguments
      */
-    private void handleHelp(@NonNull CommandSender sender, @NonNull CommandArgs args) {
+    private void handleHelp(@NotNull CommandSender sender, CommandArgs args) {
         if (!sender.hasPermission("vault.main")) {
             MessageUtil.messagePlayer(sender, "&cNo permission.");
             return;
@@ -139,7 +146,9 @@ public class VaultCmd {
         if (args.length() > 1) {
             try {
                 page = Integer.parseInt(args.getArgs(1));
-            } catch (NumberFormatException ignored) {
+            } catch (NumberFormatException ex) {
+                MessageUtil.messagePlayer(sender, "&cInvalid page number. Choose between 1 and " + maxPages + ".");
+                return;
             }
         }
 
@@ -170,7 +179,7 @@ public class VaultCmd {
      * @param <T>          The service class type
      * @return A string of all registered services for the given service class
      */
-    private <T> String getRegisteredServicesString(@NonNull Class<T> serviceClass) {
+    private <T> @NotNull String getRegisteredServicesString(Class<T> serviceClass) {
         StringBuilder services = new StringBuilder();
         Collection<RegisteredServiceProvider<T>> registrations = Bukkit.getServer().getServicesManager().getRegistrations(serviceClass);
 
@@ -191,7 +200,7 @@ public class VaultCmd {
      * @param <T>          The service class type
      * @return The primary service for the given service class
      */
-    private <T> T getPrimaryService(@NonNull Class<T> serviceClass) {
+    private <T> @Nullable T getPrimaryService(Class<T> serviceClass) {
         RegisteredServiceProvider<T> rsp = Bukkit.getServer().getServicesManager().getRegistration(serviceClass);
         return rsp == null ? null : rsp.getProvider();
     }

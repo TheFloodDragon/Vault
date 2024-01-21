@@ -1,25 +1,28 @@
 plugins {
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id 'maven-publish'
     id 'java'
 }
 
 group = 'net.milkbowl'
-version = '2.0.0'
+version = '2.1.0'
 description = 'Vault'
 compileJava.options.encoding = 'UTF-8'
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
-    // Maven central repository
+    // Maven repositories
     mavenCentral()
+    mavenLocal()
 
     // Local libraries
     flatDir {
         dirs 'libs'
     }
 
-    // Needed for Spigot API
     maven {
         url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots'
+        name 'Spigot Snapshots'
 
         content {
             includeGroup 'org.bukkit'
@@ -29,16 +32,13 @@ repositories {
 
     maven {
         url 'https://oss.sonatype.org/content/repositories/snapshots'
+        name 'Sonatype Snapshots'
     }
 
     maven {
         url 'https://oss.sonatype.org/content/repositories/central'
+        name 'Sonatype Central'
     }
-}
-
-configurations {
-    provided // Custom configuration for compile-only dependencies
-    implementation.extendsFrom(provided)
 }
 
 dependencies {
@@ -46,19 +46,25 @@ dependencies {
     // https://hub.spigotmc.org/nexus/content/repositories/snapshots
     compileOnly group: 'org.spigotmc', name: 'spigot-api', version: '1.20.4-R0.1-SNAPSHOT'
 
+    // JetBrains Annotations - for code inspection and documentation
+    // https://mvnrepository.com/artifact/org.jetbrains/annotations
+    implementation group: 'org.jetbrains', name: 'annotations', version: '24.1.0'
+
     // Lombok - for reducing boilerplate code
     // https://projectlombok.org
     implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
 }
 
-jar {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+compileJava {
+    dependsOn('clean')
+}
 
-    // Include compile-only dependencies in the JAR
-    from {
-        configurations.provided.collect { file ->
-            zipTree(file)
-        }
+shadowJar {
+    dependencies {
+        exclude(dependency(group: 'org.projectlombok', name: 'lombok'))
     }
+
+    minimize()
+    relocate 'org.jetbrains', 'net.milkbowl.vault.shaded.org.jetbrains'
 }

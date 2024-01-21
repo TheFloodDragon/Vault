@@ -83,7 +83,7 @@ publishing {
             // This will replace the regular jar with the shadowJar
             afterEvaluate {
                 tasks.named('publishMavenJavaPublicationToMavenLocal').configure {
-                    dependsOn shadowJar.archivePath
+                    dependsOn shadowJar
                 }
             }
         }

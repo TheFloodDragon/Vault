@@ -61,10 +61,20 @@ compileJava {
 }
 
 shadowJar {
+    archiveFileName = "${project.name}-${version}.jar"
+
     dependencies {
         exclude(dependency(group: 'org.projectlombok', name: 'lombok'))
     }
 
     minimize()
     relocate 'org.jetbrains', 'net.milkbowl.vault.shaded.org.jetbrains'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact shadowJar.archivePath
+        }
+    }
 }

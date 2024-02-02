@@ -22,13 +22,8 @@ repositories {
     }
 
     maven {
-        url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots'
-        name 'Spigot Snapshots'
-
-        content {
-            includeGroup 'org.bukkit'
-            includeGroup 'org.spigotmc'
-        }
+        url 'https://oss.sonatype.org/content/repositories/central'
+        name 'Sonatype Central'
     }
 
     maven {
@@ -37,8 +32,13 @@ repositories {
     }
 
     maven {
-        url 'https://oss.sonatype.org/content/repositories/central'
-        name 'Sonatype Central'
+        url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots'
+        name 'Spigot Snapshots'
+
+        content {
+            includeGroup 'org.bukkit'
+            includeGroup 'org.spigotmc'
+        }
     }
 }
 
@@ -60,7 +60,9 @@ dependencies {
 tasks {
     shadowJar {
         archiveFileName.set("${project.name}-${project.version}.jar")
+
         minimize()
+        relocate 'org.jetbrains', 'net.milkbowl.vault.shaded.org.jetbrains'
     }
 
     compileJava {

@@ -30,6 +30,16 @@ public final class MessageUtil {
     }
 
     /**
+     * Prints an exception's message as a warning to the console.
+     *
+     * @param ex The exception to print.
+     */
+    public static void printException(@NotNull Throwable ex) {
+        logger.log(Level.WARNING, "[Vulture] An error occurred: " + ex.getLocalizedMessage()
+                + " (Caused by: " + ex.getCause() + ")");
+    }
+
+    /**
      * Sends a message to the specified player.
      *
      * @param sender  The player to send the message to.

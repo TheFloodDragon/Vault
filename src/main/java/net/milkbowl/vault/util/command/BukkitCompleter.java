@@ -10,7 +10,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 import java.util.Map.Entry;
-import java.util.logging.Level;
 
 /**
  * Custom Bukkit TabCompleter class that implements the TabCompleter interface.
@@ -69,10 +68,7 @@ public class BukkitCompleter implements TabCompleter {
                     return (List<String>) entry.getKey().invoke(entry.getValue(),
                             new CommandArgs(sender, command, label, args, cmdLabel.split("\\.").length - 1));
                 } catch (IllegalArgumentException | InvocationTargetException | IllegalAccessException ex) {
-                    MessageUtil.log(Level.WARNING, "An error occurred while"
-                            + " tab-completing command " + command.getName() + " for player " + sender.getName()
-                            + " with arguments " + Arrays.toString(args) + " (" + ex.getMessage() + ")"
-                    );
+                    MessageUtil.printException(ex);
                 }
             }
         }

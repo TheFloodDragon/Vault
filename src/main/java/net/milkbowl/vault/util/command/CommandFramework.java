@@ -50,8 +50,7 @@ public class CommandFramework implements CommandExecutor {
                 field.setAccessible(true);
                 map = (CommandMap) field.get(manager);
             } catch (IllegalArgumentException | NoSuchFieldException | IllegalAccessException | SecurityException ex) {
-                MessageUtil.log(Level.WARNING, "An error occurred while"
-                        + " initializing the CommandFramework" + " (" + ex.getMessage() + ")");
+                MessageUtil.printException(ex);
             }
         }
     }
@@ -115,8 +114,7 @@ public class CommandFramework implements CommandExecutor {
                     key.invoke(value, new CommandArgs(sender, cmd, label, args,
                             cmdLabel.split("\\.").length - 1));
                 } catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException ex) {
-                    MessageUtil.log(Level.WARNING, "An error occurred while"
-                            + " executing command: " + cmdLabel + " (" + ex.getMessage() + ")");
+                    MessageUtil.printException(ex);
                 }
                 return;
             }
@@ -261,8 +259,7 @@ public class CommandFramework implements CommandExecutor {
                             + method.getName() + ". A tab completer is already registered for that command!");
                 }
             } catch (Exception ex) {
-                MessageUtil.log(Level.WARNING, "An error occurred while"
-                        + " registering tab completer: " + method.getName() + " (" + ex.getMessage() + ")");
+                MessageUtil.printException(ex);
             }
         }
     }

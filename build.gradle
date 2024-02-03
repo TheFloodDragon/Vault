@@ -60,8 +60,8 @@ dependencies {
 tasks {
     shadowJar {
         archiveFileName.set("${project.name}-${project.version}.jar")
-
         minimize()
+
         relocate 'org.jetbrains', 'net.milkbowl.vault.shaded.org.jetbrains'
     }
 

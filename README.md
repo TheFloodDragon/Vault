@@ -4,7 +4,7 @@
 [![JitPack Badge](https://jitpack.io/v/Foulest/Vault.svg)](https://jitpack.io/#Foulest/Vault)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/08549e809046466f94a7f36663125529)](https://app.codacy.com/gh/Foulest/Vault/dashboard)
 
-Vault is a permissions, chat, & economy API to give plugins easy hooks into.
+**Vault** is a permissions, chat, & economy API to give plugins easy hooks into.
 
 This is, of course, an updated fork of the original **[Vault](https://github.com/milkbowl/Vault)** project. Visit the
 original project for more information.

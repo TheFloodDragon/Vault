@@ -61,9 +61,9 @@ dependencies {
 tasks {
     shadowJar {
         archiveFileName.set("${project.name}-${project.version}.jar")
+        enableRelocation = true
+        relocationPrefix = "net.milkbowl.vault.shaded"
         minimize()
-
-        relocate 'org.jetbrains', 'net.milkbowl.vault.shaded.org.jetbrains'
     }
 
     compileJava {

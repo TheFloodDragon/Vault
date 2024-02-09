@@ -10,6 +10,12 @@ This is, of course, an updated fork of the original **[Vault](https://github.com
 
 All credit for the original project goes to the **[MilkBowl](https://github.com/MilkBowl)** team.
 
+## Overview
+
+I created this fork due to Vault not receiving an update in over **3 years**.
+
+This fork aims to update the entire codebase with the focus of maintainability.
+
 ## Features
 
 - All the features of the original Vault project

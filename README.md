@@ -6,8 +6,7 @@
 
 **Vault** is a permissions, chat, & economy API to give plugins easy hooks into.
 
-This is, of course, an updated fork of the original **[Vault](https://github.com/milkbowl/Vault)** project. Visit the
-original project for more information.
+This is, of course, an updated fork of the original **[Vault](https://github.com/milkbowl/Vault)** project.
 
 All credit for the original project goes to the **[MilkBowl](https://github.com/MilkBowl)** team.
 

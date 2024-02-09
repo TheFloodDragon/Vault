@@ -18,7 +18,7 @@ This fork aims to update the entire codebase with the focus of maintainability.
 
 ## Features
 
-- All the features of the original Vault project
+- All the features of the original Vault project *(version 1.7.3)*
 - Re-coded the entire project to be more efficient and easier to maintain
 - Merged the VaultAPI into the project itself
 - Removed Vault's update checker and need for config files

@@ -10,7 +10,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.ServicesManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.checkerframework.checker.index.qual.IndexOrLow;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.logging.Level;

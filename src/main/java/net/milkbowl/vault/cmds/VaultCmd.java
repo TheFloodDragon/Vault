@@ -1,5 +1,6 @@
 package net.milkbowl.vault.cmds;
 
+import net.milkbowl.vault.Vault;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
@@ -56,6 +57,7 @@ public class VaultCmd {
                 // Displays Vault information.
                 MessageUtil.messagePlayer(sender, "");
                 MessageUtil.messagePlayer(sender, "&eVault Information");
+                MessageUtil.messagePlayer(sender, "&7Version: &f" + Vault.getInstance().getDescription().getVersion());
                 MessageUtil.messagePlayer(sender, String.format("&7Economy: &f%s &7[%s]", economy == null ? "None" : economy.getName(), registeredEcons));
                 MessageUtil.messagePlayer(sender, String.format("&7Permission: &f%s &7[%s]", permission == null ? "None" : permission.getName(), registeredPerms));
                 MessageUtil.messagePlayer(sender, String.format("&7Chat: &f%s &7[%s]", chat == null ? "None" : chat.getName(), registeredChats));

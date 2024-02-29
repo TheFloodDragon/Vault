@@ -15,7 +15,6 @@ import java.util.List;
  * @author minnymin3
  * @see <a href="https://github.com/mcardy/CommandFramework">CommandFramework GitHub</a>
  */
-@SuppressWarnings("unused")
 public class BukkitCommand extends org.bukkit.command.Command {
 
     private final Plugin owningPlugin;

@@ -1,5 +1,7 @@
 package net.milkbowl.vault.util.command;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.milkbowl.vault.util.MessageUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -18,7 +20,8 @@ import java.util.Map.Entry;
  * @author minnymin3
  * @see <a href="https://github.com/mcardy/CommandFramework">CommandFramework GitHub</a>
  */
-@SuppressWarnings("unused")
+@Getter
+@Setter
 public class BukkitCompleter implements TabCompleter {
 
     private final Map<String, Entry<Method, Object>> completers = new HashMap<>();

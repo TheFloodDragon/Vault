@@ -1,5 +1,6 @@
 package net.milkbowl.vault;
 
+import lombok.Getter;
 import net.milkbowl.vault.cmds.VaultCmd;
 import net.milkbowl.vault.permission.Permission;
 import net.milkbowl.vault.permission.SuperPerms;
@@ -9,6 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.ServicesManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.checkerframework.checker.index.qual.IndexOrLow;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.logging.Level;
@@ -22,7 +24,14 @@ import java.util.logging.Level;
 @SuppressWarnings("unused")
 public class Vault extends JavaPlugin {
 
+    @Getter
+    private static Vault instance;
     private CommandFramework framework;
+
+    @Override
+    public void onLoad() {
+        instance = this;
+    }
 
     @Override
     public void onEnable() {

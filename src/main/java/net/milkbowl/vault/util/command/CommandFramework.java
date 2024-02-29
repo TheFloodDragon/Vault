@@ -3,10 +3,7 @@ package net.milkbowl.vault.util.command;
 import lombok.Getter;
 import lombok.Setter;
 import net.milkbowl.vault.util.MessageUtil;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandMap;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.PluginCommand;
+import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.SimplePluginManager;
@@ -100,13 +97,15 @@ public class CommandFramework implements CommandExecutor {
                 Object value = commandMap.get(cmdLabel).getValue();
                 Command command = key.getAnnotation(Command.class);
 
-                if (!("").equals(command.permission()) && !sender.hasPermission(command.permission())) {
-                    MessageUtil.messagePlayer(sender, command.noPermission());
+                if (command.inGameOnly() && !(sender instanceof Player)) {
+                    MessageUtil.messagePlayer(sender, "&cOnly players may execute this command.");
                     return;
                 }
 
-                if (command.inGameOnly() && !(sender instanceof Player)) {
-                    MessageUtil.messagePlayer(sender, "&cOnly players may execute this command.");
+                if (!("").equals(command.permission())
+                        && !sender.hasPermission(command.permission())
+                        && !(sender instanceof ConsoleCommandSender)) {
+                    MessageUtil.messagePlayer(sender, command.noPermission());
                     return;
                 }
 
@@ -134,8 +133,8 @@ public class CommandFramework implements CommandExecutor {
                 Command command = method.getAnnotation(Command.class);
 
                 if (method.getParameterTypes().length > 1 || method.getParameterTypes()[0] != CommandArgs.class) {
-                    MessageUtil.log(Level.WARNING, "&cUnable to register command "
-                            + method.getName() + ". Unexpected method arguments");
+                    MessageUtil.log(Level.WARNING, "Unable to register command "
+                            + method.getName() + "; unexpected method arguments.");
                     continue;
                 }
 
@@ -150,13 +149,13 @@ public class CommandFramework implements CommandExecutor {
 
                 if (method.getParameterTypes().length != 1 || method.getParameterTypes()[0] != CommandArgs.class) {
                     MessageUtil.log(Level.WARNING, "Unable to register tab completer "
-                            + method.getName() + ". Unexpected method arguments");
+                            + method.getName() + "; unexpected method arguments.");
                     continue;
                 }
 
                 if (method.getReturnType() != List.class) {
                     MessageUtil.log(Level.WARNING, "Unable to register tab completer "
-                            + method.getName() + ". Unexpected return type");
+                            + method.getName() + "; unexpected return type.");
                     continue;
                 }
 
@@ -221,8 +220,8 @@ public class CommandFramework implements CommandExecutor {
             BukkitCommand command = (BukkitCommand) map.getCommand(cmdLabel);
 
             if (command == null) {
-                MessageUtil.log(Level.WARNING, "&cUnable to register tab completer: "
-                        + method.getName() + ". A command with that name doesn't exist!");
+                MessageUtil.log(Level.WARNING, "Unable to register tab completer: "
+                        + method.getName() + "; a command with that name doesn't exist.");
                 return;
             }
 
@@ -237,8 +236,8 @@ public class CommandFramework implements CommandExecutor {
                 Object command = map.getCommand(cmdLabel);
 
                 if (command == null) {
-                    MessageUtil.log(Level.WARNING, "&cUnable to register tab completer: "
-                            + method.getName() + ". A command with that name doesn't exist!");
+                    MessageUtil.log(Level.WARNING, "Unable to register tab completer: "
+                            + method.getName() + "; a command with that name doesn't exist.");
                     return;
                 }
 
@@ -255,8 +254,8 @@ public class CommandFramework implements CommandExecutor {
                     completer.addCompleter(label, method, obj);
 
                 } else {
-                    MessageUtil.log(Level.WARNING, "&cUnable to register tab completer: "
-                            + method.getName() + ". A tab completer is already registered for that command!");
+                    MessageUtil.log(Level.WARNING, "Unable to register tab completer: "
+                            + method.getName() + "; a tab completer is already registered for that command.");
                 }
             } catch (Exception ex) {
                 MessageUtil.printException(ex);

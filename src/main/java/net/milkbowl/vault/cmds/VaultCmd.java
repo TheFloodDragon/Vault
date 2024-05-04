@@ -25,7 +25,7 @@ import java.util.*;
 public class VaultCmd {
 
     @Command(name = "vault", description = "Main command for Vault.",
-            permission = "vault.admin", usage = "/vault")
+            permission = "vault.main", usage = "/vault")
     public void onCommand(@NotNull CommandArgs args) {
         CommandSender sender = args.getSender();
 
@@ -39,6 +39,11 @@ public class VaultCmd {
         String subCommand = args.getArgs(0);
         switch (subCommand.toLowerCase()) {
             case "info":
+                if (!sender.hasPermission("vault.info")) {
+                    MessageUtil.messagePlayer(sender, "&cNo permission.");
+                    return;
+                }
+
                 if (args.length() != 1) {
                     MessageUtil.messagePlayer(sender, "&cUsage: /vault info");
                     return;
@@ -65,6 +70,11 @@ public class VaultCmd {
                 break;
 
             case "convert":
+                if (!sender.hasPermission("vault.convert")) {
+                    MessageUtil.messagePlayer(sender, "&cNo permission.");
+                    return;
+                }
+
                 if (args.length() != 3) {
                     MessageUtil.messagePlayer(sender, "&cUsage: /vault convert [econ1] [econ2]");
                     return;

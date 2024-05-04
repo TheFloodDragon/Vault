@@ -3,3 +3,13 @@ version: ${project.version}
 main: net.milkbowl.vault.Vault
 authors: [ Sleaker, Cerea1, Mung3r, Kainzo, Foulest ]
 api-version: 1.20
+permissions:
+  vault.main:
+    description: Allows access to all Vault commands
+    default: op
+  vault.info:
+    description: Allows access to the Vault info command
+    default: op
+  vault.convert:
+    description: Allows access to the Vault convert command
+    default: op

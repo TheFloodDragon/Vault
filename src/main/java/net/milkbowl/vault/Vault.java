@@ -62,7 +62,7 @@ public class Vault extends JavaPlugin {
      *
      * @param commands Command to load.
      */
-    private void loadCommands(Object @NotNull ... commands) {
+    public void loadCommands(Object @NotNull ... commands) {
         for (Object command : commands) {
             framework.registerCommands(command);
         }

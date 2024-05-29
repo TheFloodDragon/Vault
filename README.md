@@ -11,24 +11,18 @@ This is, of course, an updated fork of the original **[Vault](https://github.com
 
 All credit for the original project goes to the **[MilkBowl](https://github.com/MilkBowl)** team.
 
-## Overview
+### Changes Made
 
-I created this fork due to Vault not receiving an update in over **3 years**.
-
-This fork aims to update the entire codebase with the focus of maintainability.
-
-## Features
-
-- All the features of the original Vault project *(version 1.7.3)*
-- Re-coded the entire project to be more efficient and easier to maintain
-- Merged the VaultAPI into the project itself
-- Removed Vault's update checker and need for config files
-- Updated to natively support newer versions of Minecraft
-- Removed all built-in support for old permissions and chat plugins
+- Includes all features of the original Vault project *(version 1.7.3)*
+- Re-coded the entire project for improved efficiency and maintainability
+- Merged the VaultAPI repository into the project itself
+- Removed Vault's update checker and the need for config files
+- Removed all built-in support for obsolete permissions and chat plugins
 - Moved existing commands under the `/vault` command and revised them
-- Lombok has been implemented to reduce boilerplate code
-- Migrated from using Maven to Gradle
+- Added JetBrains annotations to improve code quality
+- Implemented Lombok to reduce boilerplate code
+- Migrated from Maven to Gradle
 
-## Getting Help
+### Getting Help
 
 For support or queries, please open an issue in the [Issues section](https://github.com/Foulest/Vault/issues).

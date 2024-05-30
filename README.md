@@ -23,6 +23,13 @@ All credit for the original project goes to the **[MilkBowl](https://github.com/
 - Implemented Lombok to reduce boilerplate code
 - Migrated from Maven to Gradle
 
+### Compiling
+
+1. Clone the repository.
+2. Open a command prompt/terminal to the repository directory.
+3. Run `gradlew shadowJar` on Windows, or `./gradlew shadowJar` on macOS or Linux.
+4. The built jar file will be in `build/libs/`.
+
 ### Getting Help
 
 For support or queries, please open an issue in the [Issues section](https://github.com/Foulest/Vault/issues).

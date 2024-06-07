@@ -16,7 +16,6 @@ All credit for the original project goes to the **[MilkBowl](https://github.com/
 - Includes all features of the original Vault project *(version 1.7.3)*
 - Re-coded the entire project for improved efficiency and maintainability
 - Merged the VaultAPI repository into the project itself
-- Removed Vault's update checker and the need for config files
 - Removed all built-in support for obsolete permissions and chat plugins
 - Moved existing commands under the `/vault` command and revised them
 - Added JetBrains annotations to improve code quality

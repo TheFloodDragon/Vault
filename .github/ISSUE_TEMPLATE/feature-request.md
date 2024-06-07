@@ -8,6 +8,7 @@ assignees: ''
 ---
 
 **Before you submit this issue, please make sure you have done the following:**
+
 - [ ] I am using the latest version of Vault
 - [ ] I have searched the issue tracker for a similar issue
 

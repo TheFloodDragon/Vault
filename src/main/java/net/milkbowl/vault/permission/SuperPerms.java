@@ -1,7 +1,26 @@
+/*
+  Vault - a permissions, chat, & economy API to give plugins easy hooks into.
+  Copyright (C) 2024 Foulest (https://github.com/Foulest)
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program. If not, see <https://www.gnu.org/licenses/>.
+*/
 package net.milkbowl.vault.permission;
 
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+
+import java.util.UUID;
 
 /**
  * Vault's SuperPerms implementation; the default permissions system.
@@ -9,7 +28,6 @@ import org.bukkit.plugin.Plugin;
  * @author Foulest
  * @project Vault
  */
-@SuppressWarnings({"unused"})
 public class SuperPerms extends Permission {
 
     public SuperPerms(Plugin plugin) {
@@ -27,58 +45,58 @@ public class SuperPerms extends Permission {
     }
 
     @Override
-    public boolean playerHas(String world, String player, String permission) {
-        Player p = plugin.getServer().getPlayer(player);
-        return p != null && p.hasPermission(permission);
+    public boolean playerHas(UUID uuid, String permission) {
+        Player player = plugin.getServer().getPlayer(uuid);
+        return player != null && player.hasPermission(permission);
     }
 
     @Override
-    public boolean playerAdd(String world, String player, String permission) {
+    public boolean playerAdd(UUID uuid, String permission) {
         return false;
     }
 
     @Override
-    public boolean playerRemove(String world, String player, String permission) {
+    public boolean playerRemove(UUID uuid, String permission) {
         return false;
     }
 
     @Override
-    public boolean groupHas(String world, String group, String permission) {
+    public boolean groupHas(String group, String permission) {
         throw new UnsupportedOperationException(getName() + " has no group permissions.");
     }
 
     @Override
-    public boolean groupAdd(String world, String group, String permission) {
+    public boolean groupAdd(String group, String permission) {
         throw new UnsupportedOperationException(getName() + " has no group permissions.");
     }
 
     @Override
-    public boolean groupRemove(String world, String group, String permission) {
+    public boolean groupRemove(String group, String permission) {
         throw new UnsupportedOperationException(getName() + " has no group permissions.");
     }
 
     @Override
-    public boolean playerInGroup(String world, String player, String group) {
-        return playerHas(world, player, "groups." + group);
+    public boolean playerInGroup(UUID uuid, String group) {
+        return playerHas(uuid, "groups." + group);
     }
 
     @Override
-    public boolean playerAddGroup(String world, String player, String group) {
+    public boolean playerAddGroup(UUID uuid, String group) {
         throw new UnsupportedOperationException(getName() + " has no group permissions.");
     }
 
     @Override
-    public boolean playerRemoveGroup(String world, String player, String group) {
+    public boolean playerRemoveGroup(UUID uuid, String group) {
         throw new UnsupportedOperationException(getName() + " has no group permissions.");
     }
 
     @Override
-    public String[] getPlayerGroups(String world, String player) {
+    public String[] getPlayerGroups(UUID uuid) {
         throw new UnsupportedOperationException(getName() + " has no group permissions.");
     }
 
     @Override
-    public String getPrimaryGroup(String world, String player) {
+    public String getPrimaryGroup(UUID uuid) {
         throw new UnsupportedOperationException(getName() + " has no group permissions.");
     }
 

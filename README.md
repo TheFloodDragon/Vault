@@ -11,7 +11,7 @@ This is, of course, an updated fork of the original **[Vault](https://github.com
 
 All credit for the original project goes to the **[MilkBowl](https://github.com/MilkBowl)** team.
 
-### Changes Made
+## Changes Made
 
 - Includes all features of the original Vault project *(version 1.7.3)*
 - Re-coded the entire project for improved efficiency and maintainability
@@ -23,13 +23,13 @@ All credit for the original project goes to the **[MilkBowl](https://github.com/
 - Implemented Lombok to reduce boilerplate code
 - Migrated from Maven to Gradle
 
-### Compiling
+## Compiling
 
 1. Clone the repository.
 2. Open a command prompt/terminal to the repository directory.
 3. Run `gradlew shadowJar` on Windows, or `./gradlew shadowJar` on macOS or Linux.
-4. The built jar file will be in `build/libs/`.
+4. The built `Vault-X.X.X.jar` file will be in the `build/libs` folder.
 
-### Getting Help
+## Getting Help
 
 For support or queries, please open an issue in the [Issues section](https://github.com/Foulest/Vault/issues).

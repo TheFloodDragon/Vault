@@ -1,8 +1,24 @@
+/*
+  Vault - a permissions, chat, & economy API to give plugins easy hooks into.
+  Copyright (C) 2024 Foulest (https://github.com/Foulest)
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program. If not, see <https://www.gnu.org/licenses/>.
+*/
 package net.milkbowl.vault.permission;
 
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.World;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
@@ -10,6 +26,7 @@ import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
+import java.util.UUID;
 
 /**
  * Abstract class for Vault's Permission API.
@@ -17,7 +34,7 @@ import java.util.Iterator;
  * @author Foulest
  * @project Vault
  */
-@SuppressWarnings({"DeprecatedIsStillUsed", "unused", "SameReturnValue"})
+@SuppressWarnings({"unused"})
 public abstract class Permission {
 
     protected Plugin plugin = null;
@@ -44,167 +61,115 @@ public abstract class Permission {
     public abstract boolean hasSuperPermsCompat();
 
     /**
-     * Check if a player has a specific permission in a given world.
+     * Check if a player has a specific permission.
      *
-     * @param world      The world name.
-     * @param player     The player name.
+     * @param uuid       The UUID of the player.
      * @param permission The permission node.
      * @return true if the player has the permission, false otherwise.
-     * @deprecated Use {@link #playerHas(Player, String) playerHas} instead.
      */
+    public abstract boolean playerHas(UUID uuid, String permission);
+
     @Deprecated
-    public boolean has(String world, String player, String permission) {
-        return world == null ? this.playerHas((String) null, player, permission) : this.playerHas(world, player, permission);
+    public boolean playerHas(@NotNull Player player, String permission) {
+        return playerHas(player.getUniqueId(), permission);
     }
 
-    /**
-     * Check if a player has a specific permission in a given world.
-     *
-     * @param world      The world.
-     * @param player     The player name.
-     * @param permission The permission node.
-     * @return true if the player has the permission, false otherwise.
-     * @deprecated Use {@link #playerHas(Player, String) playerHas} instead.
-     */
     @Deprecated
-    public boolean has(World world, String player, String permission) {
-        return world == null ? this.playerHas((String) null, player, permission) : this.playerHas(world.getName(), player, permission);
+    public boolean playerHas(@NotNull OfflinePlayer player, String permission) {
+        return playerHas(player.getUniqueId(), permission);
     }
 
-    /**
-     * Check if a CommandSender has a specific permission.
-     *
-     * @param sender     The CommandSender.
-     * @param permission The permission node.
-     * @return true if the CommandSender has the permission, false otherwise.
-     */
-    public boolean has(@NotNull CommandSender sender, String permission) {
-        return sender.hasPermission(permission);
-    }
-
-    /**
-     * Check if a Player has a specific permission.
-     *
-     * @param player     The Player.
-     * @param permission The permission node.
-     * @return true if the Player has the permission, false otherwise.
-     */
-    public boolean has(@NotNull Player player, String permission) {
-        return player.hasPermission(permission);
-    }
-
-    /**
-     * Check if a player has a specific permission in a given world.
-     *
-     * @param world      The world name.
-     * @param player     The player name.
-     * @param permission The permission node.
-     * @return true if the player has the permission, false otherwise.
-     * @deprecated Use {@link #playerHas(Player, String) playerHas} instead.
-     */
     @Deprecated
-    public abstract boolean playerHas(String world, String player, String permission);
+    public boolean playerHas(@NotNull String playerName, String permission) {
+        Player player = Bukkit.getPlayer(playerName);
 
-    /**
-     * Check if a player has a specific permission in a given world.
-     *
-     * @param world      The world.
-     * @param player     The player name.
-     * @param permission The permission node.
-     * @return true if the player has the permission, false otherwise.
-     * @deprecated Use {@link #playerHas(Player, String) playerHas} instead.
-     */
-    @Deprecated
-    public boolean playerHas(World world, String player, String permission) {
-        return world == null ? this.playerHas((String) null, player, permission) : this.playerHas(world.getName(), player, permission);
-    }
-
-    /**
-     * Check if an offline player has a specific permission in a given world.
-     *
-     * @param world      The world name.
-     * @param player     The OfflinePlayer.
-     * @param permission The permission node.
-     * @return true if the player has the permission, false otherwise.
-     */
-    public boolean playerHas(String world, OfflinePlayer player, String permission) {
-        return world == null ? this.has((String) null, player.getName(), permission) : this.has(world, player.getName(), permission);
-    }
-
-    /**
-     * Check if a player has a specific permission in a given world.
-     *
-     * @param player     The player name.
-     * @param permission The permission node.
-     * @return true if the player has the permission, false otherwise.
-     */
-    public boolean playerHas(Player player, String permission) {
-        return this.has(player, permission);
+        if (player != null) {
+            return playerHas(player, permission);
+        } else {
+            return playerHas(Bukkit.getOfflinePlayer(playerName), permission);
+        }
     }
 
     /**
      * Add a permission to a player in a specified world.
      *
-     * @param world      The world name.
-     * @param player     The player name.
+     * @param uuid       The UUID of the player.
      * @param permission The permission node.
      * @return true if the permission was successfully added, false otherwise.
-     * @deprecated Use {@link #playerAdd(Player, String) playerAdd} instead.
      */
-    @Deprecated
-    public abstract boolean playerAdd(String world, String player, String permission);
+    public abstract boolean playerAdd(UUID uuid, String permission);
 
-    /**
-     * Add a permission to a player in a specified world.
-     *
-     * @param world      The world.
-     * @param player     The player name.
-     * @param permission The permission node.
-     * @return true if the permission was successfully added, false otherwise.
-     * @deprecated Use {@link #playerAdd(Player, String) playerAdd} instead.
-     */
     @Deprecated
-    public boolean playerAdd(World world, String player, String permission) {
-        return world == null ? this.playerAdd((String) null, player, permission) : this.playerAdd(world.getName(), player, permission);
+    public boolean playerAdd(@NotNull Player player, String permission) {
+        return playerAdd(player.getUniqueId(), permission);
+    }
+
+    @Deprecated
+    public boolean playerAdd(@NotNull OfflinePlayer player, String permission) {
+        return playerAdd(player.getUniqueId(), permission);
+    }
+
+    @Deprecated
+    public boolean playerAdd(@NotNull String playerName, String permission) {
+        Player player = Bukkit.getPlayer(playerName);
+
+        if (player != null) {
+            return playerAdd(player, permission);
+        } else {
+            return playerAdd(Bukkit.getOfflinePlayer(playerName), permission);
+        }
     }
 
     /**
-     * Add a permission to an offline player in a specified world.
+     * Remove a permission from a player in a specified world.
      *
-     * @param world      The world name.
-     * @param player     The OfflinePlayer.
+     * @param uuid       The Player.
      * @param permission The permission node.
      * @return true if the permission was successfully added, false otherwise.
      */
-    public boolean playerAdd(String world, OfflinePlayer player, String permission) {
-        return world == null ? this.playerAdd((String) null, player.getName(), permission) : this.playerAdd(world, player.getName(), permission);
+    public abstract boolean playerRemove(UUID uuid, String permission);
+
+    @Deprecated
+    public boolean playerRemove(@NotNull Player player, String permission) {
+        return playerRemove(player.getUniqueId(), permission);
     }
 
-    /**
-     * Add a permission to a player.
-     *
-     * @param player     The Player.
-     * @param permission The permission node.
-     * @return true if the permission was successfully added, false otherwise.
-     */
-    public boolean playerAdd(Player player, String permission) {
-        return this.playerAdd(player.getWorld().getName(), player, permission);
+    @Deprecated
+    public boolean playerRemove(@NotNull OfflinePlayer player, String permission) {
+        return playerRemove(player.getUniqueId(), permission);
+    }
+
+    @Deprecated
+    public boolean playerRemove(@NotNull String playerName, String permission) {
+        Player player = Bukkit.getPlayer(playerName);
+
+        if (player != null) {
+            return playerRemove(player, permission);
+        } else {
+            return playerRemove(Bukkit.getOfflinePlayer(playerName), permission);
+        }
     }
 
     /**
      * Add a transient permission to an offline player.
      * Transient permissions are not stored and are typically cleared when a player logs out.
      *
-     * @param player     The OfflinePlayer.
+     * @param uuid       The UUID of the player.
      * @param permission The transient permission node.
      * @return true if the transient permission was successfully added, false otherwise.
      * @throws UnsupportedOperationException If the permission system does not support offline player transient permissions.
      */
-    public boolean playerAddTransient(@NotNull OfflinePlayer player, String permission) throws UnsupportedOperationException {
+    public boolean playerAddTransient(@NotNull UUID uuid, String permission) throws UnsupportedOperationException {
+        Player player = plugin.getServer().getPlayer(uuid);
+
+        if (player == null) {
+            throw new UnsupportedOperationException(getName() + " does not support offline player transient permissions.");
+        }
+
         if (player.isOnline()) {
-            return this.playerAddTransient((Player) player, permission);
+            return playerAddTransient(player, permission);
         } else {
-            throw new UnsupportedOperationException(this.getName() + " does not support offline player transient permissions.");
+            throw new UnsupportedOperationException(getName() + " does not support offline player transient permissions.");
         }
     }
 
@@ -222,126 +187,37 @@ public abstract class Permission {
 
         do {
             if (!iterator.hasNext()) {
-                PermissionAttachment attach = player.addAttachment(this.plugin);
+                PermissionAttachment attach = player.addAttachment(plugin);
                 attach.setPermission(permission, true);
                 return true;
             }
             paInfo = iterator.next();
-        } while (paInfo.getAttachment() == null || !paInfo.getAttachment().getPlugin().equals(this.plugin));
+        } while (paInfo.getAttachment() == null || !paInfo.getAttachment().getPlugin().equals(plugin));
 
         paInfo.getAttachment().setPermission(permission, true);
         return true;
     }
 
     /**
-     * Add a transient permission to an offline player in a specified world.
-     * Transient permissions are not stored and are typically cleared when a player logs out.
-     *
-     * @param worldName  The name of the world.
-     * @param player     The OfflinePlayer.
-     * @param permission The transient permission node.
-     * @return true if the transient permission was successfully added, false otherwise.
-     * @throws UnsupportedOperationException If the permission system does not support offline player transient permissions.
-     */
-    public boolean playerAddTransient(String worldName, OfflinePlayer player, String permission) {
-        return this.playerAddTransient(player, permission);
-    }
-
-    /**
-     * Add a transient permission to a player in a specified world.
-     * Transient permissions are not stored and are typically cleared when a player logs out.
-     *
-     * @param worldName  The name of the world.
-     * @param player     The Player.
-     * @param permission The transient permission node.
-     * @return true if the transient permission was successfully added, false otherwise.
-     */
-    public boolean playerAddTransient(String worldName, Player player, String permission) {
-        return this.playerAddTransient(player, permission);
-    }
-
-    /**
-     * Remove a transient permission from an offline player.
-     * Transient permissions are not stored and are typically cleared when a player logs out.
-     *
-     * @param worldName  The name of the world.
-     * @param player     The OfflinePlayer.
-     * @param permission The transient permission node.
-     * @return true if the transient permission was successfully removed, false otherwise.
-     */
-    public boolean playerRemoveTransient(String worldName, OfflinePlayer player, String permission) {
-        return this.playerRemoveTransient(player, permission);
-    }
-
-    /**
      * Remove a transient permission from a player.
      * Transient permissions are not stored and are typically cleared when a player logs out.
      *
-     * @param worldName  The name of the world.
-     * @param player     The Player.
+     * @param uuid       The UUID of the player.
      * @param permission The transient permission node.
      * @return true if the transient permission was successfully removed, false otherwise.
      */
-    public boolean playerRemoveTransient(String worldName, Player player, String permission) {
-        return this.playerRemoveTransient((OfflinePlayer) player, permission);
-    }
+    public boolean playerRemoveTransient(@NotNull UUID uuid, String permission) {
+        Player player = plugin.getServer().getPlayer(uuid);
 
-    /**
-     * Remove a permission from a player in a specified world.
-     *
-     * @param player     The Player.
-     * @param permission The permission node.
-     * @return true if the permission was successfully added, false otherwise.
-     * @deprecated Use {@link #playerRemove(Player, String) playerRemove} instead.
-     */
-    @Deprecated
-    public abstract boolean playerRemove(String world, String player, String permission);
+        if (player == null) {
+            throw new UnsupportedOperationException(getName() + " does not support offline player transient permissions.");
+        }
 
-    /**
-     * Remove a permission from an offline player in a specified world.
-     *
-     * @param player     The Player.
-     * @param permission The permission node.
-     * @return true if the permission was successfully added, false otherwise.
-     */
-    public boolean playerRemove(String world, OfflinePlayer player, String permission) {
-        return world == null ? this.playerRemove((String) null, player.getName(), permission) : this.playerRemove(world, player.getName(), permission);
-    }
-
-    /**
-     * Remove a permission from a player in a specified world.
-     *
-     * @param player     The Player.
-     * @param permission The permission node.
-     * @return true if the permission was successfully added, false otherwise.
-     * @deprecated Use {@link #playerRemove(Player, String) playerRemove} instead.
-     */
-    @Deprecated
-    public boolean playerRemove(World world, String player, String permission) {
-        return world == null ? this.playerRemove((String) null, player, permission) : this.playerRemove(world.getName(), player, permission);
-    }
-
-    /**
-     * Remove a permission from a player.
-     *
-     * @param player     The Player.
-     * @param permission The permission node.
-     * @return true if the permission was successfully added, false otherwise.
-     */
-    public boolean playerRemove(Player player, String permission) {
-        return this.playerRemove(player.getWorld().getName(), player, permission);
-    }
-
-    /**
-     * Remove a transient permission from an offline player.
-     * Transient permissions are not stored and are typically cleared when a player logs out.
-     *
-     * @param player     The OfflinePlayer.
-     * @param permission The transient permission node.
-     * @return true if the transient permission was successfully removed, false otherwise.
-     */
-    public boolean playerRemoveTransient(@NotNull OfflinePlayer player, String permission) {
-        return player.isOnline() && this.playerRemoveTransient((Player) player, permission);
+        if (player.isOnline()) {
+            return playerRemoveTransient(player, permission);
+        } else {
+            throw new UnsupportedOperationException(getName() + " does not support offline player transient permissions.");
+        }
     }
 
     /**
@@ -361,7 +237,7 @@ public abstract class Permission {
                 return false;
             }
             paInfo = iterator.next();
-        } while (paInfo.getAttachment() == null || !paInfo.getAttachment().getPlugin().equals(this.plugin));
+        } while (paInfo.getAttachment() == null || !paInfo.getAttachment().getPlugin().equals(plugin));
 
         paInfo.getAttachment().unsetPermission(permission);
         return true;
@@ -370,304 +246,176 @@ public abstract class Permission {
     /**
      * Check if a group has a specific permission in a given world.
      *
-     * @param world      The world name.
      * @param group      The group name.
      * @param permission The permission node.
      * @return true if the player has the permission, false otherwise.
      */
-    public abstract boolean groupHas(String world, String group, String permission);
-
-    /**
-     * Check if a group has a specific permission in a given world.
-     *
-     * @param world      The world.
-     * @param group      The group name.
-     * @param permission The permission node.
-     * @return true if the player has the permission, false otherwise.
-     */
-    public boolean groupHas(World world, String group, String permission) {
-        return world == null ? this.groupHas((String) null, group, permission) : this.groupHas(world.getName(), group, permission);
-    }
+    public abstract boolean groupHas(String group, String permission);
 
     /**
      * Add a permission to a group in a specified world.
      *
-     * @param world      The world name.
      * @param group      The group name.
      * @param permission The permission node.
      * @return true if the permission was successfully added, false otherwise.
      */
-    public abstract boolean groupAdd(String world, String group, String permission);
-
-    /**
-     * Add a permission to a group in a specified world.
-     *
-     * @param world      The world.
-     * @param group      The group name.
-     * @param permission The permission node.
-     * @return true if the permission was successfully added, false otherwise.
-     */
-    public boolean groupAdd(World world, String group, String permission) {
-        return world == null ? this.groupAdd((String) null, group, permission) : this.groupAdd(world.getName(), group, permission);
-    }
+    public abstract boolean groupAdd(String group, String permission);
 
     /**
      * Remove a permission from a group in a specified world.
      *
-     * @param world      The world name.
      * @param group      The group name.
      * @param permission The permission node.
      * @return true if the permission was successfully removed, false otherwise.
      */
-    public abstract boolean groupRemove(String world, String group, String permission);
-
-    /**
-     * Remove a permission from a group in a specified world.
-     *
-     * @param world      The world.
-     * @param group      The group name.
-     * @param permission The permission node.
-     * @return true if the permission was successfully removed, false otherwise.
-     */
-    public boolean groupRemove(World world, String group, String permission) {
-        return world == null ? this.groupRemove((String) null, group, permission) : this.groupRemove(world.getName(), group, permission);
-    }
+    public abstract boolean groupRemove(String group, String permission);
 
     /**
      * Check if a player is in a group in a specified world.
      *
-     * @param world  The world name.
-     * @param player The player name.
+     * @param uuid   The UUID of the player.
      * @param group  The group name.
      * @return true if the player is in the group, false otherwise.
-     * @deprecated Use {@link #playerInGroup(Player, String) playerInGroup} instead.
      */
-    @Deprecated
-    public abstract boolean playerInGroup(String world, String player, String group);
+    public abstract boolean playerInGroup(UUID uuid, String group);
 
-    /**
-     * Check if a player is in a group in a specified world.
-     *
-     * @param world  The world.
-     * @param player The player name.
-     * @param group  The group name.
-     * @return true if the player is in the group, false otherwise.
-     * @deprecated Use {@link #playerInGroup(Player, String) playerInGroup} instead.
-     */
     @Deprecated
-    public boolean playerInGroup(World world, String player, String group) {
-        return world == null ? this.playerInGroup((String) null, player, group) : this.playerInGroup(world.getName(), player, group);
+    public boolean playerInGroup(@NotNull Player player, String group) {
+        return playerInGroup(player.getUniqueId(), group);
     }
 
-    /**
-     * Check if an offline player is in a group in a specified world.
-     *
-     * @param world  The world name.
-     * @param player The OfflinePlayer.
-     * @param group  The group name.
-     * @return true if the player is in the group, false otherwise.
-     */
-    public boolean playerInGroup(String world, OfflinePlayer player, String group) {
-        return world == null ? this.playerInGroup((String) null, player.getName(), group) : this.playerInGroup(world, player.getName(), group);
+    @Deprecated
+    public boolean playerInGroup(@NotNull OfflinePlayer player, String group) {
+        return playerInGroup(player.getUniqueId(), group);
     }
 
-    /**
-     * Check if a player is in a group in a specified world.
-     *
-     * @param player The Player.
-     * @param group  The group name.
-     * @return true if the player is in the group, false otherwise.
-     */
-    public boolean playerInGroup(Player player, String group) {
-        return this.playerInGroup(player.getWorld().getName(), player, group);
+    @Deprecated
+    public boolean playerInGroup(@NotNull String playerName, String group) {
+        Player player = Bukkit.getPlayer(playerName);
+
+        if (player != null) {
+            return playerInGroup(player, group);
+        } else {
+            return playerInGroup(Bukkit.getOfflinePlayer(playerName), group);
+        }
     }
 
     /**
      * Add a player to a group in a specified world.
      *
-     * @param world  The world name.
-     * @param player The player name.
+     * @param uuid  The UUID of the player.
      * @param group  The group name.
      * @return true if the player was successfully added to the group, false otherwise.
-     * @deprecated Use {@link #playerAddGroup(Player, String) playerAddGroup} instead.
      */
-    @Deprecated
-    public abstract boolean playerAddGroup(String world, String player, String group);
+    public abstract boolean playerAddGroup(UUID uuid, String group);
 
-    /**
-     * Add a player to a group in a specified world.
-     *
-     * @param world  The world.
-     * @param player The player name.
-     * @param group  The group name.
-     * @return true if the player was successfully added to the group, false otherwise.
-     * @deprecated Use {@link #playerAddGroup(Player, String) playerAddGroup} instead.
-     */
     @Deprecated
-    public boolean playerAddGroup(World world, String player, String group) {
-        return world == null ? this.playerAddGroup((String) null, player, group) : this.playerAddGroup(world.getName(), player, group);
+    public boolean playerAddGroup(@NotNull Player player, String group) {
+        return playerAddGroup(player.getUniqueId(), group);
     }
 
-    /**
-     * Add a player to a group in a specified world.
-     *
-     * @param world  The world name.
-     * @param player The OfflinePlayer.
-     * @param group  The group name.
-     * @return true if the player was successfully added to the group, false otherwise.
-     */
-    public boolean playerAddGroup(String world, OfflinePlayer player, String group) {
-        return world == null ? this.playerAddGroup((String) null, player.getName(), group) : this.playerAddGroup(world, player.getName(), group);
+    @Deprecated
+    public boolean playerAddGroup(@NotNull OfflinePlayer player, String group) {
+        return playerAddGroup(player.getUniqueId(), group);
     }
 
-    /**
-     * Add a player to a group in a specified world.
-     *
-     * @param player The Player.
-     * @param group  The group name.
-     * @return true if the player was successfully added to the group, false otherwise.
-     */
-    public boolean playerAddGroup(Player player, String group) {
-        return this.playerAddGroup(player.getWorld().getName(), player, group);
+    @Deprecated
+    public boolean playerAddGroup(@NotNull String playerName, String group) {
+        Player player = Bukkit.getPlayer(playerName);
+
+        if (player != null) {
+            return playerAddGroup(player, group);
+        } else {
+            return playerAddGroup(Bukkit.getOfflinePlayer(playerName), group);
+        }
     }
 
     /**
      * Remove a player from a group in a specified world.
      *
-     * @param world  The world name.
-     * @param player The player name.
+     * @param uuid The UUID of the player.
      * @param group  The group name.
      * @return true if the player was successfully removed from the group, false otherwise.
-     * @deprecated Use {@link #playerRemoveGroup(Player, String) playerRemoveGroup} instead.
      */
-    @Deprecated
-    public abstract boolean playerRemoveGroup(String world, String player, String group);
+    public abstract boolean playerRemoveGroup(UUID uuid, String group);
 
-    /**
-     * Remove a player from a group in a specified world.
-     *
-     * @param world  The world.
-     * @param player The player name.
-     * @param group  The group name.
-     * @return true if the player was successfully removed from the group, false otherwise.
-     * @deprecated Use {@link #playerRemoveGroup(Player, String) playerRemoveGroup} instead.
-     */
     @Deprecated
-    public boolean playerRemoveGroup(World world, String player, String group) {
-        return world == null ? this.playerRemoveGroup((String) null, player, group) : this.playerRemoveGroup(world.getName(), player, group);
+    public boolean playerRemoveGroup(@NotNull Player player, String group) {
+        return playerRemoveGroup(player.getUniqueId(), group);
     }
 
-    /**
-     * Remove a player from a group in a specified world.
-     *
-     * @param world  The world name.
-     * @param player The OfflinePlayer.
-     * @param group  The group name.
-     * @return true if the player was successfully removed from the group, false otherwise.
-     */
-    public boolean playerRemoveGroup(String world, OfflinePlayer player, String group) {
-        return world == null ? this.playerRemoveGroup((String) null, player.getName(), group) : this.playerRemoveGroup(world, player.getName(), group);
+    @Deprecated
+    public boolean playerRemoveGroup(@NotNull OfflinePlayer player, String group) {
+        return playerRemoveGroup(player.getUniqueId(), group);
     }
 
-    /**
-     * Remove a player from a group in a specified world.
-     *
-     * @param player The Player.
-     * @param group  The group name.
-     * @return true if the player was successfully removed from the group, false otherwise.
-     */
-    public boolean playerRemoveGroup(Player player, String group) {
-        return this.playerRemoveGroup(player.getWorld().getName(), player, group);
+    @Deprecated
+    public boolean playerRemoveGroup(@NotNull String playerName, String group) {
+        Player player = Bukkit.getPlayer(playerName);
+
+        if (player != null) {
+            return playerRemoveGroup(player, group);
+        } else {
+            return playerRemoveGroup(Bukkit.getOfflinePlayer(playerName), group);
+        }
     }
 
     /**
      * Get a list of all groups a player is in while specifying a world.
      *
-     * @param world  The world name.
-     * @param player The player name.
+     * @param uuid  The UUID of the player.
      * @return An array of all loaded groups.
-     * @deprecated Use {@link #getPlayerGroups(Player) getPlayerGroups} instead.
      */
-    @Deprecated
-    public abstract String[] getPlayerGroups(String world, String player);
+    public abstract String[] getPlayerGroups(UUID uuid);
 
-    /**
-     * Get a list of all groups a player is in while specifying a world.
-     *
-     * @param world  The world.
-     * @param player The player name.
-     * @return An array of all loaded groups.
-     * @deprecated Use {@link #getPlayerGroups(Player) getPlayerGroups} instead.
-     */
     @Deprecated
-    public String[] getPlayerGroups(World world, String player) {
-        return world == null ? this.getPlayerGroups((String) null, player) : this.getPlayerGroups(world.getName(), player);
+    public String[] getPlayerGroups(@NotNull Player player) {
+        return getPlayerGroups(player.getUniqueId());
     }
 
-    /**
-     * Get a list of all groups an offline player is in while specifying a world.
-     *
-     * @param world  The world name.
-     * @param player The OfflinePlayer.
-     * @return An array of all loaded groups.
-     */
-    public String[] getPlayerGroups(String world, @NotNull OfflinePlayer player) {
-        return this.getPlayerGroups(world, player.getName());
+    @Deprecated
+    public String[] getPlayerGroups(@NotNull OfflinePlayer player) {
+        return getPlayerGroups(player.getUniqueId());
     }
 
-    /**
-     * Get a list of all groups a player is in.
-     *
-     * @param player The Player.
-     * @return An array of all loaded groups.
-     */
-    public String[] getPlayerGroups(Player player) {
-        return this.getPlayerGroups(player.getWorld().getName(), player);
+    @Deprecated
+    public String[] getPlayerGroups(@NotNull String playerName) {
+        Player player = Bukkit.getPlayer(playerName);
+
+        if (player != null) {
+            return getPlayerGroups(player);
+        } else {
+            return getPlayerGroups(Bukkit.getOfflinePlayer(playerName));
+        }
     }
 
     /**
      * Get the primary group of a player in a specified world.
      *
-     * @param world  The world name.
-     * @param player The player name.
+     * @param uuid The UUID of the player.
      * @return The primary group.
-     * @deprecated Use {@link #getPrimaryGroup(Player) getPrimaryGroup} instead.
      */
-    @Deprecated
-    public abstract String getPrimaryGroup(String world, String player);
+    public abstract String getPrimaryGroup(UUID uuid);
 
-    /**
-     * Get the primary group of a player in a specified world.
-     *
-     * @param world  The world.
-     * @param player The player name.
-     * @return The primary group.
-     * @deprecated Use {@link #getPrimaryGroup(Player) getPrimaryGroup} instead.
-     */
     @Deprecated
-    public String getPrimaryGroup(World world, String player) {
-        return world == null ? this.getPrimaryGroup((String) null, player) : this.getPrimaryGroup(world.getName(), player);
+    public String getPrimaryGroup(@NotNull Player player) {
+        return getPrimaryGroup(player.getUniqueId());
     }
 
-    /**
-     * Get the primary group of an offline player in a specified world.
-     *
-     * @param world  The world name.
-     * @param player The OfflinePlayer.
-     * @return The primary group.
-     */
-    public String getPrimaryGroup(String world, @NotNull OfflinePlayer player) {
-        return this.getPrimaryGroup(world, player.getName());
+    @Deprecated
+    public String getPrimaryGroup(@NotNull OfflinePlayer player) {
+        return getPrimaryGroup(player.getUniqueId());
     }
 
-    /**
-     * Get the primary group of a player.
-     *
-     * @param player The Player.
-     * @return The primary group.
-     */
-    public String getPrimaryGroup(Player player) {
-        return this.getPrimaryGroup(player.getWorld().getName(), player);
+    @Deprecated
+    public String getPrimaryGroup(@NotNull String playerName) {
+        Player player = Bukkit.getPlayer(playerName);
+
+        if (player != null) {
+            return getPrimaryGroup(player);
+        } else {
+            return getPrimaryGroup(Bukkit.getOfflinePlayer(playerName));
+        }
     }
 
     /**

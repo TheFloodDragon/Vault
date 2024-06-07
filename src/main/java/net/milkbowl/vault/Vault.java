@@ -1,3 +1,20 @@
+/*
+  Vault - a permissions, chat, & economy API to give plugins easy hooks into.
+  Copyright (C) 2024 Foulest (https://github.com/Foulest)
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program. If not, see <https://www.gnu.org/licenses/>.
+*/
 package net.milkbowl.vault;
 
 import lombok.Getter;
@@ -5,8 +22,10 @@ import net.milkbowl.vault.cmds.VaultCmd;
 import net.milkbowl.vault.permission.Permission;
 import net.milkbowl.vault.permission.SuperPerms;
 import net.milkbowl.vault.util.MessageUtil;
+import net.milkbowl.vault.util.UpdateUtil;
 import net.milkbowl.vault.util.command.CommandFramework;
 import org.bukkit.Bukkit;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.ServicesManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -47,6 +66,9 @@ public class Vault extends JavaPlugin {
         MessageUtil.log(Level.INFO, "Loading Commands...");
         loadCommands(new VaultCmd());
 
+        // Schedules the update checker.
+        Bukkit.getScheduler().runTaskLater(this, UpdateUtil::checkForUpdates, 20L);
+
         MessageUtil.log(Level.INFO, "Loaded successfully.");
     }
 
@@ -65,6 +87,17 @@ public class Vault extends JavaPlugin {
     public void loadCommands(Object @NotNull ... commands) {
         for (Object command : commands) {
             framework.registerCommands(command);
+        }
+    }
+
+    /**
+     * Loads the plugin's listeners.
+     *
+     * @param listeners Listeners to load.
+     */
+    public void loadListeners(Listener @NotNull ... listeners) {
+        for (Listener listener : listeners) {
+            Bukkit.getPluginManager().registerEvents(listener, this);
         }
     }
 }

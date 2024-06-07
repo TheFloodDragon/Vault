@@ -1,3 +1,20 @@
+/*
+  Vault - a permissions, chat, & economy API to give plugins easy hooks into.
+  Copyright (C) 2024 Foulest (https://github.com/Foulest)
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program. If not, see <https://www.gnu.org/licenses/>.
+*/
 package net.milkbowl.vault.cmds;
 
 import net.milkbowl.vault.Vault;
@@ -106,17 +123,19 @@ public class VaultCmd {
 
                 // Converts all player balances from the first economy to the second economy.
                 for (OfflinePlayer op : Bukkit.getServer().getOfflinePlayers()) {
-                    if (!econ1.hasAccount(op)) {
+                    UUID uuid = op.getUniqueId();
+
+                    if (!econ1.hasAccount(uuid)) {
                         continue;
                     }
 
-                    econ2.createPlayerAccount(op);
-                    double balanceDiff = econ1.getBalance(op) - econ2.getBalance(op);
+                    econ2.createPlayerAccount(uuid);
+                    double balanceDiff = econ1.getBalance(uuid) - econ2.getBalance(uuid);
 
                     if (balanceDiff > 0) {
-                        econ2.depositPlayer(op, balanceDiff);
+                        econ2.depositPlayer(uuid, balanceDiff);
                     } else if (balanceDiff < 0) {
-                        econ2.withdrawPlayer(op, -balanceDiff);
+                        econ2.withdrawPlayer(uuid, -balanceDiff);
                     }
                 }
 

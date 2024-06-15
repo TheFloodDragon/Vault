@@ -29,10 +29,14 @@ import org.jetbrains.annotations.NotNull;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.logging.Level;
 
+import static java.util.AbstractMap.SimpleEntry;
 import static net.milkbowl.vault.util.ConstantUtil.UNABLE_TO_REGISTER_TAB_COMPLETER;
 
 /**
@@ -199,8 +203,8 @@ public class CommandFramework implements CommandExecutor {
                                 @NotNull String label,
                                 Method method,
                                 Object obj) {
-        commandMap.put(label.toLowerCase(), new AbstractMap.SimpleEntry<>(method, obj));
-        commandMap.put(plugin.getName() + ':' + label.toLowerCase(), new AbstractMap.SimpleEntry<>(method, obj));
+        commandMap.put(label.toLowerCase(), new SimpleEntry<>(method, obj));
+        commandMap.put(plugin.getName() + ':' + label.toLowerCase(), new SimpleEntry<>(method, obj));
 
         String cmdLabel = label.replace(".", ",").split(",")[0].toLowerCase();
 

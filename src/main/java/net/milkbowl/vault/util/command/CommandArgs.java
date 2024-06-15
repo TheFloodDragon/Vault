@@ -77,7 +77,7 @@ public class CommandArgs {
      * @return The formatted command label.
      */
     public String getLabel() {
-        return label.replaceAll("\\.", " ");
+        return label.replace(".", " ");
     }
 
     /**

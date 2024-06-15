@@ -28,6 +28,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Iterator;
 import java.util.UUID;
 
+import static net.milkbowl.vault.util.ConstantUtil.NO_TRANSIENT_PERMISSIONS;
+
 /**
  * Abstract class for Vault's Permission API.
  *
@@ -163,13 +165,13 @@ public abstract class Permission {
         Player player = plugin.getServer().getPlayer(uuid);
 
         if (player == null) {
-            throw new UnsupportedOperationException(getName() + " does not support offline player transient permissions.");
+            throw new UnsupportedOperationException(getName() + NO_TRANSIENT_PERMISSIONS);
         }
 
         if (player.isOnline()) {
             return playerAddTransient(player, permission);
         } else {
-            throw new UnsupportedOperationException(getName() + " does not support offline player transient permissions.");
+            throw new UnsupportedOperationException(getName() + NO_TRANSIENT_PERMISSIONS);
         }
     }
 
@@ -210,13 +212,13 @@ public abstract class Permission {
         Player player = plugin.getServer().getPlayer(uuid);
 
         if (player == null) {
-            throw new UnsupportedOperationException(getName() + " does not support offline player transient permissions.");
+            throw new UnsupportedOperationException(getName() + NO_TRANSIENT_PERMISSIONS);
         }
 
         if (player.isOnline()) {
             return playerRemoveTransient(player, permission);
         } else {
-            throw new UnsupportedOperationException(getName() + " does not support offline player transient permissions.");
+            throw new UnsupportedOperationException(getName() + NO_TRANSIENT_PERMISSIONS);
         }
     }
 

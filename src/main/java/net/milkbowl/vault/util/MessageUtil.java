@@ -17,6 +17,8 @@
  */
 package net.milkbowl.vault.util;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -32,6 +34,7 @@ import java.util.logging.Logger;
  * @author Foulest
  * @project Vault
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class MessageUtil {
 
     private static final Logger logger = Bukkit.getLogger();
@@ -43,7 +46,9 @@ public final class MessageUtil {
      * @param message The message to log.
      */
     public static void log(Level level, String message) {
-        logger.log(level, "[Vault] " + message);
+        if (logger.isLoggable(level)) {
+            logger.log(level, String.format("[Vault] %s", message));
+        }
     }
 
     /**

@@ -33,6 +33,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
+import static net.milkbowl.vault.util.ConstantUtil.NO_PERMISSION;
+
 /**
  * Main command for Vault.
  *
@@ -57,7 +59,7 @@ public class VaultCmd {
         switch (subCommand.toLowerCase()) {
             case "info":
                 if (!sender.hasPermission("vault.info")) {
-                    MessageUtil.messagePlayer(sender, "&cNo permission.");
+                    MessageUtil.messagePlayer(sender, NO_PERMISSION);
                     return;
                 }
 
@@ -88,7 +90,7 @@ public class VaultCmd {
 
             case "convert":
                 if (!sender.hasPermission("vault.convert")) {
-                    MessageUtil.messagePlayer(sender, "&cNo permission.");
+                    MessageUtil.messagePlayer(sender, NO_PERMISSION);
                     return;
                 }
 
@@ -156,7 +158,7 @@ public class VaultCmd {
      */
     private void handleHelp(@NotNull CommandSender sender, CommandArgs args) {
         if (!sender.hasPermission("vault.main")) {
-            MessageUtil.messagePlayer(sender, "&cNo permission.");
+            MessageUtil.messagePlayer(sender, NO_PERMISSION);
             return;
         }
 

@@ -17,7 +17,9 @@
  */
 package net.milkbowl.vault.util;
 
+import lombok.AccessLevel;
 import lombok.Cleanup;
+import lombok.NoArgsConstructor;
 import net.milkbowl.vault.Vault;
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.Nullable;
@@ -31,6 +33,7 @@ import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UpdateUtil {
 
     private static final String REPO_API_URL = "https://api.github.com/repos/Foulest/Vault/releases/latest";

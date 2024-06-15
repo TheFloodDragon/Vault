@@ -22,6 +22,8 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.UUID;
 
+import static net.milkbowl.vault.util.ConstantUtil.NO_GROUP_PERMISSIONS;
+
 /**
  * Vault's SuperPerms implementation; the default permissions system.
  *
@@ -62,17 +64,17 @@ public class SuperPerms extends Permission {
 
     @Override
     public boolean groupHas(String group, String permission) {
-        throw new UnsupportedOperationException(getName() + " has no group permissions.");
+        throw new UnsupportedOperationException(getName() + NO_GROUP_PERMISSIONS);
     }
 
     @Override
     public boolean groupAdd(String group, String permission) {
-        throw new UnsupportedOperationException(getName() + " has no group permissions.");
+        throw new UnsupportedOperationException(getName() + NO_GROUP_PERMISSIONS);
     }
 
     @Override
     public boolean groupRemove(String group, String permission) {
-        throw new UnsupportedOperationException(getName() + " has no group permissions.");
+        throw new UnsupportedOperationException(getName() + NO_GROUP_PERMISSIONS);
     }
 
     @Override
@@ -82,22 +84,22 @@ public class SuperPerms extends Permission {
 
     @Override
     public boolean playerAddGroup(UUID uuid, String group) {
-        throw new UnsupportedOperationException(getName() + " has no group permissions.");
+        throw new UnsupportedOperationException(getName() + NO_GROUP_PERMISSIONS);
     }
 
     @Override
     public boolean playerRemoveGroup(UUID uuid, String group) {
-        throw new UnsupportedOperationException(getName() + " has no group permissions.");
+        throw new UnsupportedOperationException(getName() + NO_GROUP_PERMISSIONS);
     }
 
     @Override
     public String[] getPlayerGroups(UUID uuid) {
-        throw new UnsupportedOperationException(getName() + " has no group permissions.");
+        throw new UnsupportedOperationException(getName() + NO_GROUP_PERMISSIONS);
     }
 
     @Override
     public String getPrimaryGroup(UUID uuid) {
-        throw new UnsupportedOperationException(getName() + " has no group permissions.");
+        throw new UnsupportedOperationException(getName() + NO_GROUP_PERMISSIONS);
     }
 
     @Override

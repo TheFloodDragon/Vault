@@ -92,6 +92,27 @@ public abstract class Permission {
         }
     }
 
+    @Deprecated
+    public boolean playerHas(String world, @NotNull Player player, String permission) {
+        return playerHas(player.getUniqueId(), permission);
+    }
+
+    @Deprecated
+    public boolean playerHas(String world, @NotNull OfflinePlayer player, String permission) {
+        return playerHas(player.getUniqueId(), permission);
+    }
+
+    @Deprecated
+    public boolean playerHas(String world, @NotNull String playerName, String permission) {
+        Player player = Bukkit.getPlayer(playerName);
+
+        if (player != null) {
+            return playerHas(player, permission);
+        } else {
+            return playerHas(Bukkit.getOfflinePlayer(playerName), permission);
+        }
+    }
+
     /**
      * Add a permission to a player in a specified world.
      *
@@ -122,6 +143,27 @@ public abstract class Permission {
         }
     }
 
+    @Deprecated
+    public boolean playerAdd(String world, @NotNull Player player, String permission) {
+        return playerAdd(player.getUniqueId(), permission);
+    }
+
+    @Deprecated
+    public boolean playerAdd(String world, @NotNull OfflinePlayer player, String permission) {
+        return playerAdd(player.getUniqueId(), permission);
+    }
+
+    @Deprecated
+    public boolean playerAdd(String world, @NotNull String playerName, String permission) {
+        Player player = Bukkit.getPlayer(playerName);
+
+        if (player != null) {
+            return playerAdd(player, permission);
+        } else {
+            return playerAdd(Bukkit.getOfflinePlayer(playerName), permission);
+        }
+    }
+
     /**
      * Remove a permission from a player in a specified world.
      *
@@ -143,6 +185,27 @@ public abstract class Permission {
 
     @Deprecated
     public boolean playerRemove(@NotNull String playerName, String permission) {
+        Player player = Bukkit.getPlayer(playerName);
+
+        if (player != null) {
+            return playerRemove(player, permission);
+        } else {
+            return playerRemove(Bukkit.getOfflinePlayer(playerName), permission);
+        }
+    }
+
+    @Deprecated
+    public boolean playerRemove(String world, @NotNull Player player, String permission) {
+        return playerRemove(player.getUniqueId(), permission);
+    }
+
+    @Deprecated
+    public boolean playerRemove(String world, @NotNull OfflinePlayer player, String permission) {
+        return playerRemove(player.getUniqueId(), permission);
+    }
+
+    @Deprecated
+    public boolean playerRemove(String world, @NotNull String playerName, String permission) {
         Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
@@ -302,6 +365,27 @@ public abstract class Permission {
         }
     }
 
+    @Deprecated
+    public boolean playerInGroup(String world, @NotNull Player player, String group) {
+        return playerInGroup(player.getUniqueId(), group);
+    }
+
+    @Deprecated
+    public boolean playerInGroup(String world, @NotNull OfflinePlayer player, String group) {
+        return playerInGroup(player.getUniqueId(), group);
+    }
+
+    @Deprecated
+    public boolean playerInGroup(String world, @NotNull String playerName, String group) {
+        Player player = Bukkit.getPlayer(playerName);
+
+        if (player != null) {
+            return playerInGroup(player, group);
+        } else {
+            return playerInGroup(Bukkit.getOfflinePlayer(playerName), group);
+        }
+    }
+
     /**
      * Add a player to a group in a specified world.
      *
@@ -323,6 +407,27 @@ public abstract class Permission {
 
     @Deprecated
     public boolean playerAddGroup(@NotNull String playerName, String group) {
+        Player player = Bukkit.getPlayer(playerName);
+
+        if (player != null) {
+            return playerAddGroup(player, group);
+        } else {
+            return playerAddGroup(Bukkit.getOfflinePlayer(playerName), group);
+        }
+    }
+
+    @Deprecated
+    public boolean playerAddGroup(String world, @NotNull Player player, String group) {
+        return playerAddGroup(player.getUniqueId(), group);
+    }
+
+    @Deprecated
+    public boolean playerAddGroup(String world, @NotNull OfflinePlayer player, String group) {
+        return playerAddGroup(player.getUniqueId(), group);
+    }
+
+    @Deprecated
+    public boolean playerAddGroup(String world, @NotNull String playerName, String group) {
         Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
@@ -362,6 +467,27 @@ public abstract class Permission {
         }
     }
 
+    @Deprecated
+    public boolean playerRemoveGroup(String world, @NotNull Player player, String group) {
+        return playerRemoveGroup(player.getUniqueId(), group);
+    }
+
+    @Deprecated
+    public boolean playerRemoveGroup(String world, @NotNull OfflinePlayer player, String group) {
+        return playerRemoveGroup(player.getUniqueId(), group);
+    }
+
+    @Deprecated
+    public boolean playerRemoveGroup(String world, @NotNull String playerName, String group) {
+        Player player = Bukkit.getPlayer(playerName);
+
+        if (player != null) {
+            return playerRemoveGroup(player, group);
+        } else {
+            return playerRemoveGroup(Bukkit.getOfflinePlayer(playerName), group);
+        }
+    }
+
     /**
      * Get a list of all groups a player is in while specifying a world.
      *
@@ -391,6 +517,27 @@ public abstract class Permission {
         }
     }
 
+    @Deprecated
+    public String[] getPlayerGroups(String world, @NotNull Player player) {
+        return getPlayerGroups(player.getUniqueId());
+    }
+
+    @Deprecated
+    public String[] getPlayerGroups(String world, @NotNull OfflinePlayer player) {
+        return getPlayerGroups(player.getUniqueId());
+    }
+
+    @Deprecated
+    public String[] getPlayerGroups(String world, @NotNull String playerName) {
+        Player player = Bukkit.getPlayer(playerName);
+
+        if (player != null) {
+            return getPlayerGroups(player);
+        } else {
+            return getPlayerGroups(Bukkit.getOfflinePlayer(playerName));
+        }
+    }
+
     /**
      * Get the primary group of a player in a specified world.
      *
@@ -411,6 +558,27 @@ public abstract class Permission {
 
     @Deprecated
     public String getPrimaryGroup(@NotNull String playerName) {
+        Player player = Bukkit.getPlayer(playerName);
+
+        if (player != null) {
+            return getPrimaryGroup(player);
+        } else {
+            return getPrimaryGroup(Bukkit.getOfflinePlayer(playerName));
+        }
+    }
+
+    @Deprecated
+    public String getPrimaryGroup(String world, @NotNull Player player) {
+        return getPrimaryGroup(player.getUniqueId());
+    }
+
+    @Deprecated
+    public String getPrimaryGroup(String world, @NotNull OfflinePlayer player) {
+        return getPrimaryGroup(player.getUniqueId());
+    }
+
+    @Deprecated
+    public String getPrimaryGroup(String world, @NotNull String playerName) {
         Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {

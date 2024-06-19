@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'net.milkbowl'
-version = '2.4.1'
+version = '2.4.2'
 description = project.name
 
 compileJava.options.encoding = 'UTF-8'

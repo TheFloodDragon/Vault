@@ -117,29 +117,29 @@ public interface Economy {
      * Checks if the given player has an account on the given world.
      *
      * @param uuid      UUID of the player to check.
-     * @param worldName Name of the world to check.
+     * @param world Name of the world to check.
      * @return Whether the player has an account on the given world.
      */
-    boolean hasAccount(UUID uuid, String worldName);
+    boolean hasAccount(UUID uuid, String world);
 
     @Deprecated
-    default boolean hasAccount(@NotNull Player player, String worldName) {
-        return hasAccount(player.getUniqueId(), worldName);
+    default boolean hasAccount(@NotNull Player player, String world) {
+        return hasAccount(player.getUniqueId(), world);
     }
 
     @Deprecated
-    default boolean hasAccount(@NotNull OfflinePlayer player, String worldName) {
-        return hasAccount(player.getUniqueId(), worldName);
+    default boolean hasAccount(@NotNull OfflinePlayer player, String world) {
+        return hasAccount(player.getUniqueId(), world);
     }
 
     @Deprecated
-    default boolean hasAccount(@NotNull String playerName, String worldName) {
+    default boolean hasAccount(@NotNull String playerName, String world) {
         Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
-            return hasAccount(player, worldName);
+            return hasAccount(player, world);
         } else {
-            return hasAccount(Bukkit.getOfflinePlayer(playerName), worldName);
+            return hasAccount(Bukkit.getOfflinePlayer(playerName), world);
         }
     }
 
@@ -176,29 +176,29 @@ public interface Economy {
      * Gets the balance of the given player on the given world.
      *
      * @param uuid      UUID of the player to check.
-     * @param worldName Name of the world to check.
+     * @param world Name of the world to check.
      * @return Balance of the given player on the given world.
      */
-    double getBalance(UUID uuid, String worldName);
+    double getBalance(UUID uuid, String world);
 
     @Deprecated
-    default double getBalance(@NotNull Player player, String worldName) {
-        return getBalance(player.getUniqueId(), worldName);
+    default double getBalance(@NotNull Player player, String world) {
+        return getBalance(player.getUniqueId(), world);
     }
 
     @Deprecated
-    default double getBalance(@NotNull OfflinePlayer player, String worldName) {
-        return getBalance(player.getUniqueId(), worldName);
+    default double getBalance(@NotNull OfflinePlayer player, String world) {
+        return getBalance(player.getUniqueId(), world);
     }
 
     @Deprecated
-    default double getBalance(@NotNull String playerName, String worldName) {
+    default double getBalance(@NotNull String playerName, String world) {
         Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
-            return getBalance(player, worldName);
+            return getBalance(player, world);
         } else {
-            return getBalance(Bukkit.getOfflinePlayer(playerName), worldName);
+            return getBalance(Bukkit.getOfflinePlayer(playerName), world);
         }
     }
 
@@ -236,30 +236,30 @@ public interface Economy {
      * Checks if the given player has at least the given amount on the given world.
      *
      * @param uuid      UUID of the player to check.
-     * @param worldName Name of the world to check.
+     * @param world Name of the world to check.
      * @param amount    Amount to check.
      * @return Whether the player has at least the given amount on the given world.
      */
-    boolean has(UUID uuid, String worldName, double amount);
+    boolean has(UUID uuid, String world, double amount);
 
     @Deprecated
-    default boolean has(@NotNull Player player, String worldName, double amount) {
-        return has(player.getUniqueId(), worldName, amount);
+    default boolean has(@NotNull Player player, String world, double amount) {
+        return has(player.getUniqueId(), world, amount);
     }
 
     @Deprecated
-    default boolean has(@NotNull OfflinePlayer player, String worldName, double amount) {
-        return has(player.getUniqueId(), worldName, amount);
+    default boolean has(@NotNull OfflinePlayer player, String world, double amount) {
+        return has(player.getUniqueId(), world, amount);
     }
 
     @Deprecated
-    default boolean has(@NotNull String playerName, String worldName, double amount) {
+    default boolean has(@NotNull String playerName, String world, double amount) {
         Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
-            return has(player, worldName, amount);
+            return has(player, world, amount);
         } else {
-            return has(Bukkit.getOfflinePlayer(playerName), worldName, amount);
+            return has(Bukkit.getOfflinePlayer(playerName), world, amount);
         }
     }
 
@@ -297,30 +297,30 @@ public interface Economy {
      * Withdraws the given amount from the given player on the given world.
      *
      * @param uuid UUID of the player to withdraw from.
-     * @param worldName Name of the world to withdraw from.
+     * @param world Name of the world to withdraw from.
      * @param amount Amount to withdraw.
      * @return Response object for the transaction.
      */
-    EconomyResponse withdrawPlayer(UUID uuid, String worldName, double amount);
+    EconomyResponse withdrawPlayer(UUID uuid, String world, double amount);
 
     @Deprecated
-    default EconomyResponse withdrawPlayer(@NotNull Player player, String worldName, double amount) {
-        return withdrawPlayer(player.getUniqueId(), worldName, amount);
+    default EconomyResponse withdrawPlayer(@NotNull Player player, String world, double amount) {
+        return withdrawPlayer(player.getUniqueId(), world, amount);
     }
 
     @Deprecated
-    default EconomyResponse withdrawPlayer(@NotNull OfflinePlayer player, String worldName, double amount) {
-        return withdrawPlayer(player.getUniqueId(), worldName, amount);
+    default EconomyResponse withdrawPlayer(@NotNull OfflinePlayer player, String world, double amount) {
+        return withdrawPlayer(player.getUniqueId(), world, amount);
     }
 
     @Deprecated
-    default EconomyResponse withdrawPlayer(@NotNull String playerName, String worldName, double amount) {
+    default EconomyResponse withdrawPlayer(@NotNull String playerName, String world, double amount) {
         Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
-            return withdrawPlayer(player, worldName, amount);
+            return withdrawPlayer(player, world, amount);
         } else {
-            return withdrawPlayer(Bukkit.getOfflinePlayer(playerName), worldName, amount);
+            return withdrawPlayer(Bukkit.getOfflinePlayer(playerName), world, amount);
         }
     }
 
@@ -358,30 +358,30 @@ public interface Economy {
      * Deposits the given amount to the given player on the given world.
      *
      * @param uuid UUID of the player to deposit to.
-     * @param worldName Name of the world to deposit to.
+     * @param world Name of the world to deposit to.
      * @param amount Amount to deposit.
      * @return Response object for the transaction.
      */
-    EconomyResponse depositPlayer(UUID uuid, String worldName, double amount);
+    EconomyResponse depositPlayer(UUID uuid, String world, double amount);
 
     @Deprecated
-    default EconomyResponse depositPlayer(@NotNull Player player, String worldName, double amount) {
-        return depositPlayer(player.getUniqueId(), worldName, amount);
+    default EconomyResponse depositPlayer(@NotNull Player player, String world, double amount) {
+        return depositPlayer(player.getUniqueId(), world, amount);
     }
 
     @Deprecated
-    default EconomyResponse depositPlayer(@NotNull OfflinePlayer player, String worldName, double amount) {
-        return depositPlayer(player.getUniqueId(), worldName, amount);
+    default EconomyResponse depositPlayer(@NotNull OfflinePlayer player, String world, double amount) {
+        return depositPlayer(player.getUniqueId(), world, amount);
     }
 
     @Deprecated
-    default EconomyResponse depositPlayer(@NotNull String playerName, String worldName, double amount) {
+    default EconomyResponse depositPlayer(@NotNull String playerName, String world, double amount) {
         Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
-            return depositPlayer(player, worldName, amount);
+            return depositPlayer(player, world, amount);
         } else {
-            return depositPlayer(Bukkit.getOfflinePlayer(playerName), worldName, amount);
+            return depositPlayer(Bukkit.getOfflinePlayer(playerName), world, amount);
         }
     }
 
@@ -558,29 +558,29 @@ public interface Economy {
      * Creates an account for the given player on the given world.
      *
      * @param uuid      UUID of the player to create an account for.
-     * @param worldName Name of the world to create an account for.
+     * @param world Name of the world to create an account for.
      * @return Whether the account was created.
      */
-    boolean createPlayerAccount(UUID uuid, String worldName);
+    boolean createPlayerAccount(UUID uuid, String world);
 
     @Deprecated
-    default boolean createPlayerAccount(@NotNull Player player, String worldName) {
-        return createPlayerAccount(player.getUniqueId(), worldName);
+    default boolean createPlayerAccount(@NotNull Player player, String world) {
+        return createPlayerAccount(player.getUniqueId(), world);
     }
 
     @Deprecated
-    default boolean createPlayerAccount(@NotNull OfflinePlayer player, String worldName) {
-        return createPlayerAccount(player.getUniqueId(), worldName);
+    default boolean createPlayerAccount(@NotNull OfflinePlayer player, String world) {
+        return createPlayerAccount(player.getUniqueId(), world);
     }
 
     @Deprecated
-    default boolean createPlayerAccount(@NotNull String playerName, String worldName) {
+    default boolean createPlayerAccount(@NotNull String playerName, String world) {
         Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
-            return createPlayerAccount(player, worldName);
+            return createPlayerAccount(player, world);
         } else {
-            return createPlayerAccount(Bukkit.getOfflinePlayer(playerName), worldName);
+            return createPlayerAccount(Bukkit.getOfflinePlayer(playerName), world);
         }
     }
 }

@@ -24,7 +24,6 @@ import lombok.Getter;
  * Response object for Economy calls.
  *
  * @author Foulest
- * @project Vault
  */
 @AllArgsConstructor
 @SuppressWarnings({"unused"})

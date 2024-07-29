@@ -32,7 +32,6 @@ import java.util.logging.Logger;
  * Utility class for sending messages.
  *
  * @author Foulest
- * @project Vault
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class MessageUtil {
@@ -67,6 +66,7 @@ public final class MessageUtil {
      * Colorizes the specified message.
      *
      * @param message The message to colorize.
+     * @return The colorized message.
      */
     @Contract("_ -> new")
     public static @NotNull String colorize(String message) {

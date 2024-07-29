@@ -31,7 +31,6 @@ import java.util.UUID;
  * Abstract class for Vault's Chat API.
  *
  * @author Foulest
- * @project Vault
  */
 @Getter
 @AllArgsConstructor

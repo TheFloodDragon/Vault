@@ -34,7 +34,6 @@ import static net.milkbowl.vault.util.ConstantUtil.NO_TRANSIENT_PERMISSIONS;
  * Abstract class for Vault's Permission API.
  *
  * @author Foulest
- * @project Vault
  */
 @SuppressWarnings({"unused"})
 public abstract class Permission {
@@ -247,20 +246,26 @@ public abstract class Permission {
      * @return true if the transient permission was successfully added, false otherwise.
      */
     public boolean playerAddTransient(@NotNull Player player, String permission) {
-        Iterator<PermissionAttachmentInfo> iterator = player.getEffectivePermissions().iterator();
-        PermissionAttachmentInfo paInfo;
+        try {
+            Iterator<PermissionAttachmentInfo> iterator = player.getEffectivePermissions().iterator();
+            PermissionAttachmentInfo paInfo;
 
-        do {
-            if (!iterator.hasNext()) {
-                PermissionAttachment attach = player.addAttachment(plugin);
-                attach.setPermission(permission, true);
-                return true;
+            while (iterator.hasNext()) {
+                paInfo = iterator.next();
+
+                if (paInfo.getAttachment() != null && paInfo.getAttachment().getPlugin().equals(plugin)) {
+                    paInfo.getAttachment().setPermission(permission, true);
+                    return true;
+                }
             }
-            paInfo = iterator.next();
-        } while (paInfo.getAttachment() == null || !paInfo.getAttachment().getPlugin().equals(plugin));
 
-        paInfo.getAttachment().setPermission(permission, true);
-        return true;
+            PermissionAttachment attach = player.addAttachment(plugin);
+            attach.setPermission(permission, true);
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
 
     /**

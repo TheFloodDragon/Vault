@@ -37,7 +37,6 @@ import java.util.logging.Level;
  * Main class for Vault.
  *
  * @author Foulest
- * @project Vault
  */
 @SuppressWarnings("unused")
 public class Vault extends JavaPlugin {

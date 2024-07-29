@@ -29,7 +29,6 @@ import java.util.UUID;
  * Abstract class for Vault's Economy API.
  *
  * @author Foulest
- * @project Vault
  */
 @SuppressWarnings({"unused"})
 public interface Economy {

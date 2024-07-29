@@ -28,7 +28,6 @@ import static net.milkbowl.vault.util.ConstantUtil.NO_GROUP_PERMISSIONS;
  * Vault's SuperPerms implementation; the default permissions system.
  *
  * @author Foulest
- * @project Vault
  */
 public class SuperPerms extends Permission {
 

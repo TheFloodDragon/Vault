@@ -33,6 +33,11 @@ import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Utility class for checking for updates.
+ *
+ * @author Foulest
+ */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UpdateUtil {
 

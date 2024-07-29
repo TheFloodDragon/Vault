@@ -39,7 +39,6 @@ import static net.milkbowl.vault.util.ConstantUtil.NO_PERMISSION;
  * Main command for Vault.
  *
  * @author Foulest
- * @project Vault
  */
 public class VaultCmd {
 

@@ -17,10 +17,12 @@
  */
 package net.milkbowl.vault.cmds;
 
+import lombok.NoArgsConstructor;
 import net.milkbowl.vault.Vault;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
+import net.milkbowl.vault.util.ConstantUtil;
 import net.milkbowl.vault.util.MessageUtil;
 import net.milkbowl.vault.util.command.Command;
 import net.milkbowl.vault.util.command.CommandArgs;
@@ -33,15 +35,15 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-import static net.milkbowl.vault.util.ConstantUtil.NO_PERMISSION;
-
 /**
  * Main command for Vault.
  *
  * @author Foulest
  */
+@NoArgsConstructor
 public class VaultCmd {
 
+    @SuppressWarnings("MethodMayBeStatic")
     @Command(name = "vault", description = "Main command for Vault.",
             permission = "vault.main", usage = "/vault")
     public void onCommand(@NotNull CommandArgs args) {
@@ -55,10 +57,10 @@ public class VaultCmd {
 
         // Handles sub-commands.
         String subCommand = args.getArgs(0);
-        switch (subCommand.toLowerCase()) {
+        switch (subCommand.toLowerCase(Locale.ROOT)) {
             case "info":
                 if (!sender.hasPermission("vault.info")) {
-                    MessageUtil.messagePlayer(sender, NO_PERMISSION);
+                    MessageUtil.messagePlayer(sender, ConstantUtil.NO_PERMISSION);
                     return;
                 }
 
@@ -89,7 +91,7 @@ public class VaultCmd {
 
             case "convert":
                 if (!sender.hasPermission("vault.convert")) {
-                    MessageUtil.messagePlayer(sender, NO_PERMISSION);
+                    MessageUtil.messagePlayer(sender, ConstantUtil.NO_PERMISSION);
                     return;
                 }
 
@@ -107,10 +109,10 @@ public class VaultCmd {
                 }
 
                 Map<String, Economy> economyMap = new HashMap<>();
-                econs.forEach(econ -> economyMap.put(econ.getProvider().getName().replace(" ", "").toLowerCase(), econ.getProvider()));
+                econs.forEach(econ -> economyMap.put(econ.getProvider().getName().replace(" ", "").toLowerCase(Locale.ROOT), econ.getProvider()));
 
-                Economy econ1 = economyMap.get(args.getArgs(0).toLowerCase());
-                Economy econ2 = economyMap.get(args.getArgs(1).toLowerCase());
+                Economy econ1 = economyMap.get(args.getArgs(0).toLowerCase(Locale.ROOT));
+                Economy econ2 = economyMap.get(args.getArgs(1).toLowerCase(Locale.ROOT));
 
                 // Checks if the specified economies are valid.
                 if (econ1 == null || econ2 == null) {
@@ -155,9 +157,9 @@ public class VaultCmd {
      * @param sender The command sender
      * @param args   The command arguments
      */
-    private void handleHelp(@NotNull CommandSender sender, CommandArgs args) {
+    private static void handleHelp(@NotNull CommandSender sender, CommandArgs args) {
         if (!sender.hasPermission("vault.main")) {
-            MessageUtil.messagePlayer(sender, NO_PERMISSION);
+            MessageUtil.messagePlayer(sender, ConstantUtil.NO_PERMISSION);
             return;
         }
 
@@ -207,7 +209,7 @@ public class VaultCmd {
      * @param <T>          The service class type
      * @return A string of all registered services for the given service class
      */
-    private <T> @NotNull String getRegisteredServicesString(Class<T> serviceClass) {
+    private static <T> @NotNull String getRegisteredServicesString(Class<T> serviceClass) {
         StringBuilder services = new StringBuilder();
         Collection<RegisteredServiceProvider<T>> registrations = Bukkit.getServer().getServicesManager().getRegistrations(serviceClass);
 
@@ -228,7 +230,7 @@ public class VaultCmd {
      * @param <T>          The service class type
      * @return The primary service for the given service class
      */
-    private <T> @Nullable T getPrimaryService(Class<T> serviceClass) {
+    private static <T> @Nullable T getPrimaryService(Class<T> serviceClass) {
         RegisteredServiceProvider<T> rsp = Bukkit.getServer().getServicesManager().getRegistration(serviceClass);
         return rsp == null ? null : rsp.getProvider();
     }

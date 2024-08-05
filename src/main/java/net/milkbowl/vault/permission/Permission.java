@@ -17,6 +17,9 @@
  */
 package net.milkbowl.vault.permission;
 
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import net.milkbowl.vault.util.ConstantUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -28,17 +31,17 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Iterator;
 import java.util.UUID;
 
-import static net.milkbowl.vault.util.ConstantUtil.NO_TRANSIENT_PERMISSIONS;
-
 /**
  * Abstract class for Vault's Permission API.
  *
  * @author Foulest
  */
-@SuppressWarnings({"unused"})
+@ToString
+@NoArgsConstructor
+@SuppressWarnings({"unused", "WeakerAccess"})
 public abstract class Permission {
 
-    protected Plugin plugin = null;
+    protected Plugin plugin;
 
     /**
      * Get the name of the permission system.
@@ -223,17 +226,17 @@ public abstract class Permission {
      * @return true if the transient permission was successfully added, false otherwise.
      * @throws UnsupportedOperationException If the permission system does not support offline player transient permissions.
      */
-    public boolean playerAddTransient(@NotNull UUID uuid, String permission) throws UnsupportedOperationException {
+    public boolean playerAddTransient(@NotNull UUID uuid, String permission) {
         Player player = plugin.getServer().getPlayer(uuid);
 
         if (player == null) {
-            throw new UnsupportedOperationException(getName() + NO_TRANSIENT_PERMISSIONS);
+            throw new UnsupportedOperationException(getName() + ConstantUtil.NO_TRANSIENT_PERMISSIONS);
         }
 
         if (player.isOnline()) {
             return playerAddTransient(player, permission);
         } else {
-            throw new UnsupportedOperationException(getName() + NO_TRANSIENT_PERMISSIONS);
+            throw new UnsupportedOperationException(getName() + ConstantUtil.NO_TRANSIENT_PERMISSIONS);
         }
     }
 
@@ -262,7 +265,7 @@ public abstract class Permission {
             PermissionAttachment attach = player.addAttachment(plugin);
             attach.setPermission(permission, true);
             return true;
-        } catch (Exception ex) {
+        } catch (RuntimeException ex) {
             ex.printStackTrace();
             return false;
         }
@@ -280,13 +283,13 @@ public abstract class Permission {
         Player player = plugin.getServer().getPlayer(uuid);
 
         if (player == null) {
-            throw new UnsupportedOperationException(getName() + NO_TRANSIENT_PERMISSIONS);
+            throw new UnsupportedOperationException(getName() + ConstantUtil.NO_TRANSIENT_PERMISSIONS);
         }
 
         if (player.isOnline()) {
             return playerRemoveTransient(player, permission);
         } else {
-            throw new UnsupportedOperationException(getName() + NO_TRANSIENT_PERMISSIONS);
+            throw new UnsupportedOperationException(getName() + ConstantUtil.NO_TRANSIENT_PERMISSIONS);
         }
     }
 

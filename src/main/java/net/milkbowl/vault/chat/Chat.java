@@ -19,6 +19,7 @@ package net.milkbowl.vault.chat;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.ToString;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -33,8 +34,9 @@ import java.util.UUID;
  * @author Foulest
  */
 @Getter
+@ToString
 @AllArgsConstructor
-@SuppressWarnings({"unused"})
+@SuppressWarnings({"unused", "WeakerAccess"})
 public abstract class Chat {
 
     private final Permission permission;

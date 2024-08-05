@@ -69,7 +69,7 @@ public final class MessageUtil {
      * @return The colorized message.
      */
     @Contract("_ -> new")
-    public static @NotNull String colorize(String message) {
+    private static @NotNull String colorize(String message) {
         return ChatColor.translateAlternateColorCodes('&', message);
     }
 }

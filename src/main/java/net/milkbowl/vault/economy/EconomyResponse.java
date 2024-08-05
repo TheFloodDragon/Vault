@@ -19,14 +19,17 @@ package net.milkbowl.vault.economy;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.ToString;
 
 /**
  * Response object for Economy calls.
  *
  * @author Foulest
  */
+@Getter
+@ToString
 @AllArgsConstructor
-@SuppressWarnings({"unused"})
+@SuppressWarnings("unused")
 public class EconomyResponse {
 
     public final double amount;
@@ -44,6 +47,7 @@ public class EconomyResponse {
     }
 
     @Getter
+    @ToString
     @AllArgsConstructor
     public enum ResponseType {
         SUCCESS(1),

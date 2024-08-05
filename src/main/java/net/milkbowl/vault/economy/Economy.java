@@ -30,7 +30,7 @@ import java.util.UUID;
  *
  * @author Foulest
  */
-@SuppressWarnings({"unused"})
+@SuppressWarnings("unused")
 public interface Economy {
 
     /**

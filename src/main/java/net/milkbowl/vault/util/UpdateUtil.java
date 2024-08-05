@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -39,7 +40,7 @@ import java.util.regex.Pattern;
  * @author Foulest
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class UpdateUtil {
+public final class UpdateUtil {
 
     private static final String REPO_API_URL = "https://api.github.com/repos/Foulest/Vault/releases/latest";
     private static final String DOWNLOAD_URL = "https://github.com/Foulest/Vault/releases/latest";
@@ -72,13 +73,14 @@ public class UpdateUtil {
      *
      * @return The latest release version or null if an error occurred.
      */
+    @SuppressWarnings("OverlyBroadCatchBlock")
     private static @Nullable String getLatestReleaseVersion() {
         try {
             URL url = new URL(REPO_API_URL);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
 
-            @Cleanup BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            @Cleanup BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
             String inputLine;
             StringBuilder content = new StringBuilder();
 
@@ -100,7 +102,7 @@ public class UpdateUtil {
      * @param jsonResponse The JSON response.
      * @return The version or null if not found.
      */
-    private static @Nullable String extractVersion(String jsonResponse) {
+    private static @Nullable String extractVersion(CharSequence jsonResponse) {
         String versionRegex = "\"tag_name\":\"(.*?)\"";
         Pattern pattern = Pattern.compile(versionRegex);
         Matcher matcher = pattern.matcher(jsonResponse);

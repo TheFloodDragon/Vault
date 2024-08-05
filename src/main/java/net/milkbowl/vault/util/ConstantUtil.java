@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
  * @author Foulest
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class ConstantUtil {
+public final class ConstantUtil {
 
     public static final String NO_PERMISSION = "&cNo permission.";
     public static final String NO_TRANSIENT_PERMISSIONS = " does not support offline player transient permissions.";

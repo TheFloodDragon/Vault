@@ -29,6 +29,14 @@ All credit for the original project goes to the **[MilkBowl](https://github.com/
 3. Run `gradlew shadowJar` on Windows, or `./gradlew shadowJar` on macOS or Linux.
 4. The built `Vault-X.X.X.jar` file will be in the `build/libs` folder.
 
+## Download and Run
+
+1. Download the latest version from the [releases page](https://github.com/Foulest/Vault/releases) or compile it
+   yourself.
+2. Make sure your server is running Spigot version 1.8.8 or higher.
+3. Place the `Vault-X.X.X.jar` file in your server's `plugins` folder.
+4. Start or restart your server.
+
 ## Getting Help
 
 For support or queries, please open an issue in the [Issues section](https://github.com/Foulest/Vault/issues).

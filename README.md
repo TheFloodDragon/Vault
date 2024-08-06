@@ -4,6 +4,7 @@
 [![CodeQL Badge](https://github.com/Foulest/Vault/actions/workflows/codeql.yml/badge.svg)](https://github.com/Foulest/Vault/actions/workflows/codeql.yml)
 [![JitPack Badge](https://jitpack.io/v/Foulest/Vault.svg)](https://jitpack.io/#Foulest/Vault)
 [![Downloads](https://img.shields.io/github/downloads/Foulest/Vault/total.svg)](https://github.com/Foulest/Vault/releases)
+[![Lines of Code](https://img.shields.io/endpoint?url=https://ghloc.vercel.app/api/Foulest/Vault/badge?filter=.java$&style=flat&logoColor=white&label=Lines%20of%20Code)](https://ghloc.vercel.app/Foulest/Vault?branch=main)
 
 **Vault** is a permissions, chat, & economy API to give plugins easy hooks into.
 

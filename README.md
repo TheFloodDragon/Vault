@@ -1,7 +1,7 @@
 # Vault
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![DeepSource](https://app.deepsource.com/gh/Foulest/Vault.svg/?label=active+issues&show_trend=false&token=lOvHahGd-oAB9ubEYRHLfoQP)](https://app.deepsource.com/gh/Foulest/Vault/)
+[![CodeQL Badge](https://github.com/Foulest/Vault/actions/workflows/codeql.yml/badge.svg)](https://github.com/Foulest/Vault/actions/workflows/codeql.yml)
 [![Downloads](https://img.shields.io/github/downloads/Foulest/Vault/total.svg)](https://github.com/Foulest/Vault/releases)
 [![JitPack Badge](https://jitpack.io/v/Foulest/Vault.svg)](https://jitpack.io/#Foulest/Vault)
 

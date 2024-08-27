@@ -46,6 +46,10 @@ public class EconomyResponse {
         return type == EconomyResponse.ResponseType.SUCCESS;
     }
 
+    /**
+     * A list of possible response types.
+     * These are returned by the Economy API.
+     */
     @Getter
     @ToString
     @AllArgsConstructor

@@ -17,19 +17,33 @@
  */
 package net.milkbowl.vault.util;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.experimental.UtilityClass;
 
 /**
  * Utility class for constants.
  *
  * @author Foulest
  */
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class ConstantUtil {
+@UtilityClass
+public class ConstantUtil {
 
-    public static final String NO_PERMISSION = "&cNo permission.";
-    public static final String NO_TRANSIENT_PERMISSIONS = " does not support offline player transient permissions.";
-    public static final String NO_GROUP_PERMISSIONS = " has no group permissions.";
-    public static final String UNABLE_TO_REGISTER_TAB_COMPLETER = "Unable to register tab completer: ";
+    /**
+     * Constant for when a player has no permission.
+     */
+    public final String NO_PERMISSION = "&cNo permission.";
+
+    /**
+     * Constant for when a permission system does not support offline player permissions.
+     */
+    public final String NO_TRANSIENT_PERMISSIONS = " does not support offline player transient permissions.";
+
+    /**
+     * Constant for when a permission system has no group permissions.
+     */
+    public final String NO_GROUP_PERMISSIONS = " has no group permissions.";
+
+    /**
+     * Constant for when a tab completer is unable to be registered.
+     */
+    public final String UNABLE_TO_REGISTER_TAB_COMPLETER = "Unable to register tab completer: ";
 }

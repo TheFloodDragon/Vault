@@ -41,11 +41,6 @@ import java.util.*;
  */
 public class VaultCmd {
 
-    /**
-     * Handles the command logic.
-     *
-     * @param args The command arguments.
-     */
     @SuppressWarnings("MethodMayBeStatic")
     @Command(name = "vault", description = "Main command for Vault.",
             permission = "vault.main", usage = "/vault")

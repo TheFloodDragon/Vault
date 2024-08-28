@@ -34,6 +34,7 @@ import org.jetbrains.annotations.Nullable;
  */
 @Getter
 @Setter
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class CommandArgs {
 
     private final CommandSender sender;

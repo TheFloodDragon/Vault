@@ -18,7 +18,6 @@
 package net.milkbowl.vault;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import net.milkbowl.vault.cmds.VaultCmd;
 import net.milkbowl.vault.permission.Permission;
 import net.milkbowl.vault.permission.SuperPerms;
@@ -39,7 +38,6 @@ import java.util.logging.Level;
  *
  * @author Foulest
  */
-@NoArgsConstructor
 @SuppressWarnings("unused")
 public class Vault extends JavaPlugin {
 

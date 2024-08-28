@@ -17,7 +17,6 @@
  */
 package net.milkbowl.vault.economy;
 
-import lombok.NoArgsConstructor;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 
@@ -27,7 +26,6 @@ import org.jetbrains.annotations.NotNull;
  *
  * @author Foulest
  */
-@NoArgsConstructor
 @SuppressWarnings({"deprecation", "unused"})
 public abstract class AbstractEconomy implements Economy {
 

@@ -17,7 +17,6 @@
  */
 package net.milkbowl.vault.cmds;
 
-import lombok.NoArgsConstructor;
 import net.milkbowl.vault.Vault;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
@@ -40,9 +39,13 @@ import java.util.*;
  *
  * @author Foulest
  */
-@NoArgsConstructor
 public class VaultCmd {
 
+    /**
+     * Handles the command logic.
+     *
+     * @param args The command arguments.
+     */
     @SuppressWarnings("MethodMayBeStatic")
     @Command(name = "vault", description = "Main command for Vault.",
             permission = "vault.main", usage = "/vault")

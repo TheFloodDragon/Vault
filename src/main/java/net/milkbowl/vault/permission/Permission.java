@@ -17,7 +17,6 @@
  */
 package net.milkbowl.vault.permission;
 
-import lombok.NoArgsConstructor;
 import net.milkbowl.vault.util.ConstantUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -35,7 +34,6 @@ import java.util.UUID;
  *
  * @author Foulest
  */
-@NoArgsConstructor
 @SuppressWarnings({"unused", "WeakerAccess"})
 public abstract class Permission {
 

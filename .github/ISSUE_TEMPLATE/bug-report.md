@@ -10,6 +10,7 @@ assignees: 'Foulest'
 **Before you submit this issue, please make sure you have done the following:**
 
 - [ ] I am using the latest version of Vault
+- [ ] I have placed Vault in my server's plugins folder
 - [ ] I have searched the issue tracker for a similar issue
 
 **Describe the bug**

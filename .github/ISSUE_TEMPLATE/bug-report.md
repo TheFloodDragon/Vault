@@ -34,5 +34,11 @@ Steps to reproduce the behavior:
 **Screenshots**
 If applicable, add screenshots or animated GIFs to help explain your problem.
 
+**Server Information (please complete the following information):**
+
+- Server version: [e.g. PaperSpigot 1.8.8]
+- Plugin version: [e.g. 1.0.0]
+- Other plugins: [e.g. EssentialsX, WorldEdit]
+
 **Additional context**
 Add any other context about the issue here.

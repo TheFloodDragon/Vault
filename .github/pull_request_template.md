@@ -1,6 +1,6 @@
 **Checklist**
 
-- [ ] I have read the [Contribution Guidelines](https://github.com/Foulest/Vault/blob/main/.github/CONTRIBUTING.md).
+- [ ] I have read the [Contribution Guidelines](CONTRIBUTING.md).
 - [ ] I have searched the issue tracker for a similar issue.
 - [ ] I have added necessary documentation (if appropriate).
 - [ ] I have performed a self-review of my code.

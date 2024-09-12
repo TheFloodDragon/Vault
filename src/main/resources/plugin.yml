@@ -7,11 +7,11 @@ folia-supported: true
 
 permissions:
   vault.main:
-    description: Allows access to all Vault commands
+    description: Allows access to all Vault commands.
     default: op
   vault.info:
-    description: Allows access to the Vault info command
+    description: Allows access to the Vault info command.
     default: op
   vault.convert:
-    description: Allows access to the Vault convert command
+    description: Allows access to the Vault convert command.
     default: op

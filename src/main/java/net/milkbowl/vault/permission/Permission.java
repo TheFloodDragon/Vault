@@ -61,6 +61,41 @@ public abstract class Permission {
      */
     public abstract boolean hasSuperPermsCompat();
 
+    @Deprecated
+    public boolean has(UUID uuid, String permission) {
+        return playerHas(uuid, permission);
+    }
+
+    @Deprecated
+    public boolean has(@NotNull Player player, String permission) {
+        return playerHas(player, permission);
+    }
+
+    @Deprecated
+    public boolean has(@NotNull OfflinePlayer player, String permission) {
+        return playerHas(player, permission);
+    }
+
+    @Deprecated
+    public boolean has(@NotNull String playerName, String permission) {
+        return playerHas(playerName, permission);
+    }
+
+    @Deprecated
+    public boolean has(String world, @NotNull Player player, String permission) {
+        return playerHas(world, player, permission);
+    }
+
+    @Deprecated
+    public boolean has(String world, @NotNull OfflinePlayer player, String permission) {
+        return playerHas(world, player, permission);
+    }
+
+    @Deprecated
+    public boolean has(String world, @NotNull String playerName, String permission) {
+        return playerHas(world, playerName, permission);
+    }
+
     /**
      * Check if a player has a specific permission.
      *

@@ -21,6 +21,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.UUID;
@@ -93,17 +94,19 @@ public interface Economy {
 
     @Deprecated
     default boolean hasAccount(@NotNull Player player) {
-        return hasAccount(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return hasAccount(uniqueId);
     }
 
     @Deprecated
     default boolean hasAccount(@NotNull OfflinePlayer player) {
-        return hasAccount(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return hasAccount(uniqueId);
     }
 
     @Deprecated
     default boolean hasAccount(@NotNull String playerName) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return hasAccount(player);
@@ -123,17 +126,19 @@ public interface Economy {
 
     @Deprecated
     default boolean hasAccount(@NotNull Player player, String world) {
-        return hasAccount(player.getUniqueId(), world);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return hasAccount(uniqueId, world);
     }
 
     @Deprecated
     default boolean hasAccount(@NotNull OfflinePlayer player, String world) {
-        return hasAccount(player.getUniqueId(), world);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return hasAccount(uniqueId, world);
     }
 
     @Deprecated
     default boolean hasAccount(@NotNull String playerName, String world) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return hasAccount(player, world);
@@ -152,17 +157,19 @@ public interface Economy {
 
     @Deprecated
     default double getBalance(@NotNull Player player) {
-        return getBalance(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getBalance(uniqueId);
     }
 
     @Deprecated
     default double getBalance(@NotNull OfflinePlayer player) {
-        return getBalance(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getBalance(uniqueId);
     }
 
     @Deprecated
     default double getBalance(@NotNull String playerName) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return getBalance(player);
@@ -182,17 +189,19 @@ public interface Economy {
 
     @Deprecated
     default double getBalance(@NotNull Player player, String world) {
-        return getBalance(player.getUniqueId(), world);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getBalance(uniqueId, world);
     }
 
     @Deprecated
     default double getBalance(@NotNull OfflinePlayer player, String world) {
-        return getBalance(player.getUniqueId(), world);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getBalance(uniqueId, world);
     }
 
     @Deprecated
     default double getBalance(@NotNull String playerName, String world) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return getBalance(player, world);
@@ -212,17 +221,19 @@ public interface Economy {
 
     @Deprecated
     default boolean has(@NotNull Player player, double amount) {
-        return has(player.getUniqueId(), amount);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return has(uniqueId, amount);
     }
 
     @Deprecated
     default boolean has(@NotNull OfflinePlayer player, double amount) {
-        return has(player.getUniqueId(), amount);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return has(uniqueId, amount);
     }
 
     @Deprecated
     default boolean has(@NotNull String playerName, double amount) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return has(player, amount);
@@ -243,17 +254,19 @@ public interface Economy {
 
     @Deprecated
     default boolean has(@NotNull Player player, String world, double amount) {
-        return has(player.getUniqueId(), world, amount);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return has(uniqueId, world, amount);
     }
 
     @Deprecated
     default boolean has(@NotNull OfflinePlayer player, String world, double amount) {
-        return has(player.getUniqueId(), world, amount);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return has(uniqueId, world, amount);
     }
 
     @Deprecated
     default boolean has(@NotNull String playerName, String world, double amount) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return has(player, world, amount);
@@ -273,17 +286,19 @@ public interface Economy {
 
     @Deprecated
     default EconomyResponse withdrawPlayer(@NotNull Player player, double amount) {
-        return withdrawPlayer(player.getUniqueId(), amount);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return withdrawPlayer(uniqueId, amount);
     }
 
     @Deprecated
     default EconomyResponse withdrawPlayer(@NotNull OfflinePlayer player, double amount) {
-        return withdrawPlayer(player.getUniqueId(), amount);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return withdrawPlayer(uniqueId, amount);
     }
 
     @Deprecated
     default EconomyResponse withdrawPlayer(@NotNull String playerName, double amount) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return withdrawPlayer(player, amount);
@@ -304,17 +319,19 @@ public interface Economy {
 
     @Deprecated
     default EconomyResponse withdrawPlayer(@NotNull Player player, String world, double amount) {
-        return withdrawPlayer(player.getUniqueId(), world, amount);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return withdrawPlayer(uniqueId, world, amount);
     }
 
     @Deprecated
     default EconomyResponse withdrawPlayer(@NotNull OfflinePlayer player, String world, double amount) {
-        return withdrawPlayer(player.getUniqueId(), world, amount);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return withdrawPlayer(uniqueId, world, amount);
     }
 
     @Deprecated
     default EconomyResponse withdrawPlayer(@NotNull String playerName, String world, double amount) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return withdrawPlayer(player, world, amount);
@@ -334,17 +351,19 @@ public interface Economy {
 
     @Deprecated
     default EconomyResponse depositPlayer(@NotNull Player player, double amount) {
-        return depositPlayer(player.getUniqueId(), amount);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return depositPlayer(uniqueId, amount);
     }
 
     @Deprecated
     default EconomyResponse depositPlayer(@NotNull OfflinePlayer player, double amount) {
-        return depositPlayer(player.getUniqueId(), amount);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return depositPlayer(uniqueId, amount);
     }
 
     @Deprecated
     default EconomyResponse depositPlayer(@NotNull String playerName, double amount) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return depositPlayer(player, amount);
@@ -365,17 +384,19 @@ public interface Economy {
 
     @Deprecated
     default EconomyResponse depositPlayer(@NotNull Player player, String world, double amount) {
-        return depositPlayer(player.getUniqueId(), world, amount);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return depositPlayer(uniqueId, world, amount);
     }
 
     @Deprecated
     default EconomyResponse depositPlayer(@NotNull OfflinePlayer player, String world, double amount) {
-        return depositPlayer(player.getUniqueId(), world, amount);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return depositPlayer(uniqueId, world, amount);
     }
 
     @Deprecated
     default EconomyResponse depositPlayer(@NotNull String playerName, String world, double amount) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return depositPlayer(player, world, amount);
@@ -395,17 +416,19 @@ public interface Economy {
 
     @Deprecated
     default EconomyResponse createBank(String name, @NotNull Player player) {
-        return createBank(name, player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return createBank(name, uniqueId);
     }
 
     @Deprecated
     default EconomyResponse createBank(String name, @NotNull OfflinePlayer player) {
-        return createBank(name, player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return createBank(name, uniqueId);
     }
 
     @Deprecated
     default EconomyResponse createBank(String name, @NotNull String playerName) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return createBank(name, player);
@@ -468,17 +491,19 @@ public interface Economy {
 
     @Deprecated
     default EconomyResponse isBankOwner(String name, @NotNull Player player) {
-        return isBankOwner(name, player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return isBankOwner(name, uniqueId);
     }
 
     @Deprecated
     default EconomyResponse isBankOwner(String name, @NotNull OfflinePlayer player) {
-        return isBankOwner(name, player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return isBankOwner(name, uniqueId);
     }
 
     @Deprecated
     default EconomyResponse isBankOwner(String name, @NotNull String playerName) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return isBankOwner(name, player);
@@ -498,17 +523,19 @@ public interface Economy {
 
     @Deprecated
     default EconomyResponse isBankMember(String name, @NotNull Player player) {
-        return isBankMember(name, player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return isBankMember(name, uniqueId);
     }
 
     @Deprecated
     default EconomyResponse isBankMember(String name, @NotNull OfflinePlayer player) {
-        return isBankMember(name, player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return isBankMember(name, uniqueId);
     }
 
     @Deprecated
     default EconomyResponse isBankMember(String name, @NotNull String playerName) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return isBankMember(name, player);
@@ -534,17 +561,19 @@ public interface Economy {
 
     @Deprecated
     default boolean createPlayerAccount(@NotNull Player player) {
-        return createPlayerAccount(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return createPlayerAccount(uniqueId);
     }
 
     @Deprecated
     default boolean createPlayerAccount(@NotNull OfflinePlayer player) {
-        return createPlayerAccount(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return createPlayerAccount(uniqueId);
     }
 
     @Deprecated
     default boolean createPlayerAccount(@NotNull String playerName) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return createPlayerAccount(player);
@@ -564,17 +593,19 @@ public interface Economy {
 
     @Deprecated
     default boolean createPlayerAccount(@NotNull Player player, String world) {
-        return createPlayerAccount(player.getUniqueId(), world);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return createPlayerAccount(uniqueId, world);
     }
 
     @Deprecated
     default boolean createPlayerAccount(@NotNull OfflinePlayer player, String world) {
-        return createPlayerAccount(player.getUniqueId(), world);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return createPlayerAccount(uniqueId, world);
     }
 
     @Deprecated
     default boolean createPlayerAccount(@NotNull String playerName, String world) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return createPlayerAccount(player, world);

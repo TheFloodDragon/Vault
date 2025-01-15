@@ -1,5 +1,5 @@
 /*
- * Vault - a permissions, chat, & economy API to give plugins easy hooks into.
+ * Vulture - a server protection plugin designed for Minecraft 1.8.9 servers.
  * Copyright (C) 2024 Foulest (https://github.com/Foulest)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,8 +17,7 @@
  */
 package net.milkbowl.vault.util.command;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -35,8 +34,7 @@ import java.util.*;
  * @author minnymin3
  * @see <a href="https://github.com/mcardy/CommandFramework">CommandFramework GitHub</a>
  */
-@Getter
-@Setter
+@Data
 public class BukkitCompleter implements TabCompleter {
 
     private final Map<String, Map.Entry<Method, Object>> completers = new HashMap<>();
@@ -68,23 +66,28 @@ public class BukkitCompleter implements TabCompleter {
                                       @NotNull String label,
                                       String @NotNull [] args) {
         for (int i = args.length; i >= 0; i--) {
-            StringBuilder buffer = new StringBuilder();
-            buffer.append(label.toLowerCase(Locale.ROOT));
+            @NotNull StringBuilder buffer = new StringBuilder();
+            @NotNull String labelLower = label.toLowerCase(Locale.ROOT);
+            buffer.append(labelLower);
 
             for (int x = 0; x < i; x++) {
                 if (!args[x].isEmpty() && !(" ").equals(args[x])) {
-                    buffer.append(".").append(args[x].toLowerCase(Locale.ROOT));
+                    @NotNull String argsLower = args[x].toLowerCase(Locale.ROOT);
+                    buffer.append(".").append(argsLower);
                 }
             }
 
-            String cmdLabel = buffer.toString();
+            @NotNull String cmdLabel = buffer.toString();
 
             if (completers.containsKey(cmdLabel)) {
                 Map.Entry<Method, Object> entry = completers.get(cmdLabel);
 
                 try {
-                    return (List<String>) entry.getKey().invoke(entry.getValue(),
-                            new CommandArgs(sender, command, label, args, cmdLabel.split("\\.").length - 1));
+                    Object entryValue = entry.getValue();
+                    String @NotNull [] split = cmdLabel.split("\\.");
+
+                    return (List<String>) entry.getKey().invoke(entryValue,
+                            new CommandArgs(sender, command, label, args, split.length - 1));
                 } catch (IllegalArgumentException | InvocationTargetException | IllegalAccessException ex) {
                     ex.printStackTrace();
                 }

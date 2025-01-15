@@ -24,6 +24,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
@@ -37,7 +38,7 @@ import java.util.UUID;
 @SuppressWarnings({"unused", "WeakerAccess"})
 public abstract class Chat {
 
-    private final Permission permission;
+    private final @NotNull Permission permission;
 
     /**
      * Gets the name of the chat implementation.
@@ -63,17 +64,19 @@ public abstract class Chat {
 
     @Deprecated
     public String getPlayerPrefix(@NotNull Player player) {
-        return getPlayerPrefix(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerPrefix(uniqueId);
     }
 
     @Deprecated
     public String getPlayerPrefix(@NotNull OfflinePlayer player) {
-        return getPlayerPrefix(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerPrefix(uniqueId);
     }
 
     @Deprecated
     public String getPlayerPrefix(@NotNull String playerName) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return getPlayerPrefix(player);
@@ -93,17 +96,19 @@ public abstract class Chat {
 
     @Deprecated
     public String getPlayerPrefix(String world, @NotNull Player player) {
-        return getPlayerPrefix(world, player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerPrefix(world, uniqueId);
     }
 
     @Deprecated
     public String getPlayerPrefix(String world, @NotNull OfflinePlayer player) {
-        return getPlayerPrefix(world, player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerPrefix(world, uniqueId);
     }
 
     @Deprecated
     public String getPlayerPrefix(String world, @NotNull String playerName) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return getPlayerPrefix(world, player);
@@ -122,17 +127,19 @@ public abstract class Chat {
 
     @Deprecated
     public void setPlayerPrefix(@NotNull Player player, String prefix) {
-        setPlayerPrefix(player.getUniqueId(), prefix);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerPrefix(uniqueId, prefix);
     }
 
     @Deprecated
     public void setPlayerPrefix(@NotNull OfflinePlayer player, String prefix) {
-        setPlayerPrefix(player.getUniqueId(), prefix);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerPrefix(uniqueId, prefix);
     }
 
     @Deprecated
     public void setPlayerPrefix(@NotNull String playerName, String prefix) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             setPlayerPrefix(player, prefix);
@@ -152,17 +159,19 @@ public abstract class Chat {
 
     @Deprecated
     public void setPlayerPrefix(String world, @NotNull Player player, String prefix) {
-        setPlayerPrefix(world, player.getUniqueId(), prefix);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerPrefix(world, uniqueId, prefix);
     }
 
     @Deprecated
     public void setPlayerPrefix(String world, @NotNull OfflinePlayer player, String prefix) {
-        setPlayerPrefix(world, player.getUniqueId(), prefix);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerPrefix(world, uniqueId, prefix);
     }
 
     @Deprecated
     public void setPlayerPrefix(String world, @NotNull String playerName, String prefix) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             setPlayerPrefix(world, player, prefix);
@@ -181,17 +190,19 @@ public abstract class Chat {
 
     @Deprecated
     public String getPlayerSuffix(@NotNull Player player) {
-        return getPlayerSuffix(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerSuffix(uniqueId);
     }
 
     @Deprecated
     public String getPlayerSuffix(@NotNull OfflinePlayer player) {
-        return getPlayerSuffix(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerSuffix(uniqueId);
     }
 
     @Deprecated
     public String getPlayerSuffix(@NotNull String playerName) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return getPlayerSuffix(player);
@@ -211,17 +222,19 @@ public abstract class Chat {
 
     @Deprecated
     public String getPlayerSuffix(String world, @NotNull Player player) {
-        return getPlayerSuffix(world, player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerSuffix(world, uniqueId);
     }
 
     @Deprecated
     public String getPlayerSuffix(String world, @NotNull OfflinePlayer player) {
-        return getPlayerSuffix(world, player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerSuffix(world, uniqueId);
     }
 
     @Deprecated
     public String getPlayerSuffix(String world, @NotNull String playerName) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return getPlayerSuffix(world, player);
@@ -240,17 +253,19 @@ public abstract class Chat {
 
     @Deprecated
     public void setPlayerSuffix(@NotNull Player player, String suffix) {
-        setPlayerSuffix(player.getUniqueId(), suffix);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerSuffix(uniqueId, suffix);
     }
 
     @Deprecated
     public void setPlayerSuffix(@NotNull OfflinePlayer player, String suffix) {
-        setPlayerSuffix(player.getUniqueId(), suffix);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerSuffix(uniqueId, suffix);
     }
 
     @Deprecated
     public void setPlayerSuffix(@NotNull String playerName, String suffix) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             setPlayerSuffix(player, suffix);
@@ -270,17 +285,19 @@ public abstract class Chat {
 
     @Deprecated
     public void setPlayerSuffix(String world, @NotNull Player player, String suffix) {
-        setPlayerSuffix(world, player.getUniqueId(), suffix);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerSuffix(world, uniqueId, suffix);
     }
 
     @Deprecated
     public void setPlayerSuffix(String world, @NotNull OfflinePlayer player, String suffix) {
-        setPlayerSuffix(world, player.getUniqueId(), suffix);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerSuffix(world, uniqueId, suffix);
     }
 
     @Deprecated
     public void setPlayerSuffix(String world, @NotNull String playerName, String suffix) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             setPlayerSuffix(world, player, suffix);
@@ -371,17 +388,19 @@ public abstract class Chat {
 
     @Deprecated
     public int getPlayerInfoInteger(@NotNull Player player, String node, int defaultValue) {
-        return getPlayerInfoInteger(player.getUniqueId(), node, defaultValue);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerInfoInteger(uniqueId, node, defaultValue);
     }
 
     @Deprecated
     public int getPlayerInfoInteger(@NotNull OfflinePlayer player, String node, int defaultValue) {
-        return getPlayerInfoInteger(player.getUniqueId(), node, defaultValue);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerInfoInteger(uniqueId, node, defaultValue);
     }
 
     @Deprecated
     public int getPlayerInfoInteger(@NotNull String playerName, String node, int defaultValue) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return getPlayerInfoInteger(player, node, defaultValue);
@@ -403,17 +422,19 @@ public abstract class Chat {
 
     @Deprecated
     public int getPlayerInfoInteger(String world, @NotNull Player player, String node, int defaultValue) {
-        return getPlayerInfoInteger(world, player.getUniqueId(), node, defaultValue);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerInfoInteger(world, uniqueId, node, defaultValue);
     }
 
     @Deprecated
     public int getPlayerInfoInteger(String world, @NotNull OfflinePlayer player, String node, int defaultValue) {
-        return getPlayerInfoInteger(world, player.getUniqueId(), node, defaultValue);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerInfoInteger(world, uniqueId, node, defaultValue);
     }
 
     @Deprecated
     public int getPlayerInfoInteger(String world, @NotNull String playerName, String node, int defaultValue) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return getPlayerInfoInteger(world, player, node, defaultValue);
@@ -433,17 +454,19 @@ public abstract class Chat {
 
     @Deprecated
     public void setPlayerInfoInteger(@NotNull Player player, String node, int value) {
-        setPlayerInfoInteger(player.getUniqueId(), node, value);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerInfoInteger(uniqueId, node, value);
     }
 
     @Deprecated
     public void setPlayerInfoInteger(@NotNull OfflinePlayer player, String node, int value) {
-        setPlayerInfoInteger(player.getUniqueId(), node, value);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerInfoInteger(uniqueId, node, value);
     }
 
     @Deprecated
     public void setPlayerInfoInteger(@NotNull String playerName, String node, int value) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             setPlayerInfoInteger(player, node, value);
@@ -464,17 +487,19 @@ public abstract class Chat {
 
     @Deprecated
     public void setPlayerInfoInteger(String world, @NotNull Player player, String node, int value) {
-        setPlayerInfoInteger(world, player.getUniqueId(), node, value);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerInfoInteger(world, uniqueId, node, value);
     }
 
     @Deprecated
     public void setPlayerInfoInteger(String world, @NotNull OfflinePlayer player, String node, int value) {
-        setPlayerInfoInteger(world, player.getUniqueId(), node, value);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerInfoInteger(world, uniqueId, node, value);
     }
 
     @Deprecated
     public void setPlayerInfoInteger(String world, @NotNull String playerName, String node, int value) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             setPlayerInfoInteger(world, player, node, value);
@@ -535,17 +560,19 @@ public abstract class Chat {
 
     @Deprecated
     public double getPlayerInfoDouble(@NotNull Player player, String node, double defaultValue) {
-        return getPlayerInfoDouble(player.getUniqueId(), node, defaultValue);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerInfoDouble(uniqueId, node, defaultValue);
     }
 
     @Deprecated
     public double getPlayerInfoDouble(@NotNull OfflinePlayer player, String node, double defaultValue) {
-        return getPlayerInfoDouble(player.getUniqueId(), node, defaultValue);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerInfoDouble(uniqueId, node, defaultValue);
     }
 
     @Deprecated
     public double getPlayerInfoDouble(@NotNull String playerName, String node, double defaultValue) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return getPlayerInfoDouble(player, node, defaultValue);
@@ -567,17 +594,19 @@ public abstract class Chat {
 
     @Deprecated
     public double getPlayerInfoDouble(String world, @NotNull Player player, String node, double defaultValue) {
-        return getPlayerInfoDouble(world, player.getUniqueId(), node, defaultValue);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerInfoDouble(world, uniqueId, node, defaultValue);
     }
 
     @Deprecated
     public double getPlayerInfoDouble(String world, @NotNull OfflinePlayer player, String node, double defaultValue) {
-        return getPlayerInfoDouble(world, player.getUniqueId(), node, defaultValue);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerInfoDouble(world, uniqueId, node, defaultValue);
     }
 
     @Deprecated
     public double getPlayerInfoDouble(String world, @NotNull String playerName, String node, double defaultValue) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return getPlayerInfoDouble(world, player, node, defaultValue);
@@ -597,17 +626,19 @@ public abstract class Chat {
 
     @Deprecated
     public void setPlayerInfoDouble(@NotNull Player player, String node, double value) {
-        setPlayerInfoDouble(player.getUniqueId(), node, value);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerInfoDouble(uniqueId, node, value);
     }
 
     @Deprecated
     public void setPlayerInfoDouble(@NotNull OfflinePlayer player, String node, double value) {
-        setPlayerInfoDouble(player.getUniqueId(), node, value);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerInfoDouble(uniqueId, node, value);
     }
 
     @Deprecated
     public void setPlayerInfoDouble(@NotNull String playerName, String node, double value) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             setPlayerInfoDouble(player, node, value);
@@ -628,17 +659,19 @@ public abstract class Chat {
 
     @Deprecated
     public void setPlayerInfoDouble(String world, @NotNull Player player, String node, double value) {
-        setPlayerInfoDouble(world, player.getUniqueId(), node, value);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerInfoDouble(world, uniqueId, node, value);
     }
 
     @Deprecated
     public void setPlayerInfoDouble(String world, @NotNull OfflinePlayer player, String node, double value) {
-        setPlayerInfoDouble(world, player.getUniqueId(), node, value);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerInfoDouble(world, uniqueId, node, value);
     }
 
     @Deprecated
     public void setPlayerInfoDouble(String world, @NotNull String playerName, String node, double value) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             setPlayerInfoDouble(world, player, node, value);
@@ -699,17 +732,19 @@ public abstract class Chat {
 
     @Deprecated
     public boolean getPlayerInfoBoolean(@NotNull Player player, String node, boolean defaultValue) {
-        return getPlayerInfoBoolean(player.getUniqueId(), node, defaultValue);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerInfoBoolean(uniqueId, node, defaultValue);
     }
 
     @Deprecated
     public boolean getPlayerInfoBoolean(@NotNull OfflinePlayer player, String node, boolean defaultValue) {
-        return getPlayerInfoBoolean(player.getUniqueId(), node, defaultValue);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerInfoBoolean(uniqueId, node, defaultValue);
     }
 
     @Deprecated
     public boolean getPlayerInfoBoolean(@NotNull String playerName, String node, boolean defaultValue) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return getPlayerInfoBoolean(player, node, defaultValue);
@@ -731,17 +766,19 @@ public abstract class Chat {
 
     @Deprecated
     public boolean getPlayerInfoBoolean(String world, @NotNull Player player, String node, boolean defaultValue) {
-        return getPlayerInfoBoolean(world, player.getUniqueId(), node, defaultValue);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerInfoBoolean(world, uniqueId, node, defaultValue);
     }
 
     @Deprecated
     public boolean getPlayerInfoBoolean(String world, @NotNull OfflinePlayer player, String node, boolean defaultValue) {
-        return getPlayerInfoBoolean(world, player.getUniqueId(), node, defaultValue);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerInfoBoolean(world, uniqueId, node, defaultValue);
     }
 
     @Deprecated
     public boolean getPlayerInfoBoolean(String world, @NotNull String playerName, String node, boolean defaultValue) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return getPlayerInfoBoolean(world, player, node, defaultValue);
@@ -761,17 +798,19 @@ public abstract class Chat {
 
     @Deprecated
     public void setPlayerInfoBoolean(@NotNull Player player, String node, boolean value) {
-        setPlayerInfoBoolean(player.getUniqueId(), node, value);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerInfoBoolean(uniqueId, node, value);
     }
 
     @Deprecated
     public void setPlayerInfoBoolean(@NotNull OfflinePlayer player, String node, boolean value) {
-        setPlayerInfoBoolean(player.getUniqueId(), node, value);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerInfoBoolean(uniqueId, node, value);
     }
 
     @Deprecated
     public void setPlayerInfoBoolean(@NotNull String playerName, String node, boolean value) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             setPlayerInfoBoolean(player, node, value);
@@ -792,17 +831,19 @@ public abstract class Chat {
 
     @Deprecated
     public void setPlayerInfoBoolean(String world, @NotNull Player player, String node, boolean value) {
-        setPlayerInfoBoolean(world, player.getUniqueId(), node, value);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerInfoBoolean(world, uniqueId, node, value);
     }
 
     @Deprecated
     public void setPlayerInfoBoolean(String world, @NotNull OfflinePlayer player, String node, boolean value) {
-        setPlayerInfoBoolean(world, player.getUniqueId(), node, value);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerInfoBoolean(world, uniqueId, node, value);
     }
 
     @Deprecated
     public void setPlayerInfoBoolean(String world, @NotNull String playerName, String node, boolean value) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             setPlayerInfoBoolean(world, player, node, value);
@@ -863,17 +904,19 @@ public abstract class Chat {
 
     @Deprecated
     public String getPlayerInfoString(@NotNull Player player, String node, String defaultValue) {
-        return getPlayerInfoString(player.getUniqueId(), node, defaultValue);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerInfoString(uniqueId, node, defaultValue);
     }
 
     @Deprecated
     public String getPlayerInfoString(@NotNull OfflinePlayer player, String node, String defaultValue) {
-        return getPlayerInfoString(player.getUniqueId(), node, defaultValue);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerInfoString(uniqueId, node, defaultValue);
     }
 
     @Deprecated
     public String getPlayerInfoString(@NotNull String playerName, String node, String defaultValue) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return getPlayerInfoString(player, node, defaultValue);
@@ -895,17 +938,19 @@ public abstract class Chat {
 
     @Deprecated
     public String getPlayerInfoString(String world, @NotNull Player player, String node, String defaultValue) {
-        return getPlayerInfoString(world, player.getUniqueId(), node, defaultValue);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerInfoString(world, uniqueId, node, defaultValue);
     }
 
     @Deprecated
     public String getPlayerInfoString(String world, @NotNull OfflinePlayer player, String node, String defaultValue) {
-        return getPlayerInfoString(world, player.getUniqueId(), node, defaultValue);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerInfoString(world, uniqueId, node, defaultValue);
     }
 
     @Deprecated
     public String getPlayerInfoString(String world, @NotNull String playerName, String node, String defaultValue) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return getPlayerInfoString(world, player, node, defaultValue);
@@ -925,17 +970,19 @@ public abstract class Chat {
 
     @Deprecated
     public void setPlayerInfoString(@NotNull Player player, String node, String value) {
-        setPlayerInfoString(player.getUniqueId(), node, value);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerInfoString(uniqueId, node, value);
     }
 
     @Deprecated
     public void setPlayerInfoString(@NotNull OfflinePlayer player, String node, String value) {
-        setPlayerInfoString(player.getUniqueId(), node, value);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerInfoString(uniqueId, node, value);
     }
 
     @Deprecated
     public void setPlayerInfoString(@NotNull String playerName, String node, String value) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             setPlayerInfoString(player, node, value);
@@ -956,17 +1003,19 @@ public abstract class Chat {
 
     @Deprecated
     public void setPlayerInfoString(String world, @NotNull Player player, String node, String value) {
-        setPlayerInfoString(world, player.getUniqueId(), node, value);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerInfoString(world, uniqueId, node, value);
     }
 
     @Deprecated
     public void setPlayerInfoString(String world, @NotNull OfflinePlayer player, String node, String value) {
-        setPlayerInfoString(world, player.getUniqueId(), node, value);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        setPlayerInfoString(world, uniqueId, node, value);
     }
 
     @Deprecated
     public void setPlayerInfoString(String world, @NotNull String playerName, String node, String value) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             setPlayerInfoString(world, player, node, value);
@@ -1028,17 +1077,19 @@ public abstract class Chat {
 
     @Deprecated
     public boolean playerInGroup(@NotNull Player player, String group) {
-        return playerInGroup(player.getUniqueId(), group);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerInGroup(uniqueId, group);
     }
 
     @Deprecated
     public boolean playerInGroup(@NotNull OfflinePlayer player, String group) {
-        return playerInGroup(player.getUniqueId(), group);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerInGroup(uniqueId, group);
     }
 
     @Deprecated
     public boolean playerInGroup(@NotNull String playerName, String group) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return playerInGroup(player, group);
@@ -1049,17 +1100,19 @@ public abstract class Chat {
 
     @Deprecated
     public boolean playerInGroup(String world, @NotNull Player player, String group) {
-        return playerInGroup(player.getUniqueId(), group);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerInGroup(uniqueId, group);
     }
 
     @Deprecated
     public boolean playerInGroup(String world, @NotNull OfflinePlayer player, String group) {
-        return playerInGroup(player.getUniqueId(), group);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerInGroup(uniqueId, group);
     }
 
     @Deprecated
     public boolean playerInGroup(String world, @NotNull String playerName, String group) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return playerInGroup(player, group);
@@ -1080,17 +1133,19 @@ public abstract class Chat {
 
     @Deprecated
     public String[] getPlayerGroups(@NotNull Player player) {
-        return getPlayerGroups(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerGroups(uniqueId);
     }
 
     @Deprecated
     public String[] getPlayerGroups(@NotNull OfflinePlayer player) {
-        return getPlayerGroups(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerGroups(uniqueId);
     }
 
     @Deprecated
     public String[] getPlayerGroups(@NotNull String playerName) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return getPlayerGroups(player);
@@ -1101,17 +1156,19 @@ public abstract class Chat {
 
     @Deprecated
     public String[] getPlayerGroups(String world, @NotNull Player player) {
-        return getPlayerGroups(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerGroups(uniqueId);
     }
 
     @Deprecated
     public String[] getPlayerGroups(String world, @NotNull OfflinePlayer player) {
-        return getPlayerGroups(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerGroups(uniqueId);
     }
 
     @Deprecated
     public String[] getPlayerGroups(String world, @NotNull String playerName) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return getPlayerGroups(player);
@@ -1132,17 +1189,19 @@ public abstract class Chat {
 
     @Deprecated
     public String getPrimaryGroup(@NotNull Player player) {
-        return getPrimaryGroup(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPrimaryGroup(uniqueId);
     }
 
     @Deprecated
     public String getPrimaryGroup(@NotNull OfflinePlayer player) {
-        return getPrimaryGroup(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPrimaryGroup(uniqueId);
     }
 
     @Deprecated
     public String getPrimaryGroup(@NotNull String playerName) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return getPrimaryGroup(player);
@@ -1153,17 +1212,19 @@ public abstract class Chat {
 
     @Deprecated
     public String getPrimaryGroup(String world, @NotNull Player player) {
-        return getPrimaryGroup(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPrimaryGroup(uniqueId);
     }
 
     @Deprecated
     public String getPrimaryGroup(String world, @NotNull OfflinePlayer player) {
-        return getPrimaryGroup(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPrimaryGroup(uniqueId);
     }
 
     @Deprecated
     public String getPrimaryGroup(String world, @NotNull String playerName) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return getPrimaryGroup(player);

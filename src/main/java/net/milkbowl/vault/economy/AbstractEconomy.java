@@ -20,6 +20,8 @@ package net.milkbowl.vault.economy;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.UUID;
+
 /**
  * Deprecated abstract class for Vault's Economy API.
  * Some plugins may still use this class, so it is kept for compatibility.
@@ -31,76 +33,91 @@ public abstract class AbstractEconomy implements Economy {
 
     @Override
     public boolean hasAccount(@NotNull OfflinePlayer player) {
-        return hasAccount(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return hasAccount(uniqueId);
     }
 
     @Override
     public boolean hasAccount(@NotNull OfflinePlayer player, String worldName) {
-        return hasAccount(player.getUniqueId(), worldName);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return hasAccount(uniqueId, worldName);
     }
 
     @Override
     public double getBalance(@NotNull OfflinePlayer player) {
-        return getBalance(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getBalance(uniqueId);
     }
 
     @Override
     public double getBalance(@NotNull OfflinePlayer player, String world) {
-        return getBalance(player.getUniqueId(), world);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getBalance(uniqueId, world);
     }
 
     @Override
     public boolean has(@NotNull OfflinePlayer player, double amount) {
-        return has(player.getUniqueId(), amount);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return has(uniqueId, amount);
     }
 
     @Override
     public boolean has(@NotNull OfflinePlayer player, String worldName, double amount) {
-        return has(player.getUniqueId(), worldName, amount);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return has(uniqueId, worldName, amount);
     }
 
     @Override
     public EconomyResponse withdrawPlayer(@NotNull OfflinePlayer player, double amount) {
-        return withdrawPlayer(player.getUniqueId(), amount);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return withdrawPlayer(uniqueId, amount);
     }
 
     @Override
     public EconomyResponse withdrawPlayer(@NotNull OfflinePlayer player, String worldName, double amount) {
-        return withdrawPlayer(player.getUniqueId(), worldName, amount);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return withdrawPlayer(uniqueId, worldName, amount);
     }
 
     @Override
     public EconomyResponse depositPlayer(@NotNull OfflinePlayer player, double amount) {
-        return depositPlayer(player.getUniqueId(), amount);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return depositPlayer(uniqueId, amount);
     }
 
     @Override
     public EconomyResponse depositPlayer(@NotNull OfflinePlayer player, String worldName, double amount) {
-        return depositPlayer(player.getUniqueId(), worldName, amount);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return depositPlayer(uniqueId, worldName, amount);
     }
 
     @Override
     public EconomyResponse createBank(String name, @NotNull OfflinePlayer player) {
-        return createBank(name, player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return createBank(name, uniqueId);
     }
 
     @Override
     public EconomyResponse isBankOwner(String name, @NotNull OfflinePlayer player) {
-        return isBankOwner(name, player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return isBankOwner(name, uniqueId);
     }
 
     @Override
     public EconomyResponse isBankMember(String name, @NotNull OfflinePlayer player) {
-        return isBankMember(name, player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return isBankMember(name, uniqueId);
     }
 
     @Override
     public boolean createPlayerAccount(@NotNull OfflinePlayer player) {
-        return createPlayerAccount(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return createPlayerAccount(uniqueId);
     }
 
     @Override
     public boolean createPlayerAccount(@NotNull OfflinePlayer player, String worldName) {
-        return createPlayerAccount(player.getUniqueId(), worldName);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return createPlayerAccount(uniqueId, worldName);
     }
 }

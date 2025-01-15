@@ -25,6 +25,7 @@ import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Iterator;
 import java.util.UUID;
@@ -71,17 +72,19 @@ public abstract class Permission {
 
     @Deprecated
     public boolean playerHas(@NotNull Player player, String permission) {
-        return playerHas(player.getUniqueId(), permission);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerHas(uniqueId, permission);
     }
 
     @Deprecated
     public boolean playerHas(@NotNull OfflinePlayer player, String permission) {
-        return playerHas(player.getUniqueId(), permission);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerHas(uniqueId, permission);
     }
 
     @Deprecated
     public boolean playerHas(@NotNull String playerName, String permission) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return playerHas(player, permission);
@@ -92,17 +95,19 @@ public abstract class Permission {
 
     @Deprecated
     public boolean playerHas(String world, @NotNull Player player, String permission) {
-        return playerHas(player.getUniqueId(), permission);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerHas(uniqueId, permission);
     }
 
     @Deprecated
     public boolean playerHas(String world, @NotNull OfflinePlayer player, String permission) {
-        return playerHas(player.getUniqueId(), permission);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerHas(uniqueId, permission);
     }
 
     @Deprecated
     public boolean playerHas(String world, @NotNull String playerName, String permission) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return playerHas(player, permission);
@@ -122,17 +127,19 @@ public abstract class Permission {
 
     @Deprecated
     public boolean playerAdd(@NotNull Player player, String permission) {
-        return playerAdd(player.getUniqueId(), permission);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerAdd(uniqueId, permission);
     }
 
     @Deprecated
     public boolean playerAdd(@NotNull OfflinePlayer player, String permission) {
-        return playerAdd(player.getUniqueId(), permission);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerAdd(uniqueId, permission);
     }
 
     @Deprecated
     public boolean playerAdd(@NotNull String playerName, String permission) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return playerAdd(player, permission);
@@ -143,17 +150,19 @@ public abstract class Permission {
 
     @Deprecated
     public boolean playerAdd(String world, @NotNull Player player, String permission) {
-        return playerAdd(player.getUniqueId(), permission);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerAdd(uniqueId, permission);
     }
 
     @Deprecated
     public boolean playerAdd(String world, @NotNull OfflinePlayer player, String permission) {
-        return playerAdd(player.getUniqueId(), permission);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerAdd(uniqueId, permission);
     }
 
     @Deprecated
     public boolean playerAdd(String world, @NotNull String playerName, String permission) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return playerAdd(player, permission);
@@ -173,17 +182,19 @@ public abstract class Permission {
 
     @Deprecated
     public boolean playerRemove(@NotNull Player player, String permission) {
-        return playerRemove(player.getUniqueId(), permission);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerRemove(uniqueId, permission);
     }
 
     @Deprecated
     public boolean playerRemove(@NotNull OfflinePlayer player, String permission) {
-        return playerRemove(player.getUniqueId(), permission);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerRemove(uniqueId, permission);
     }
 
     @Deprecated
     public boolean playerRemove(@NotNull String playerName, String permission) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return playerRemove(player, permission);
@@ -194,17 +205,19 @@ public abstract class Permission {
 
     @Deprecated
     public boolean playerRemove(String world, @NotNull Player player, String permission) {
-        return playerRemove(player.getUniqueId(), permission);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerRemove(uniqueId, permission);
     }
 
     @Deprecated
     public boolean playerRemove(String world, @NotNull OfflinePlayer player, String permission) {
-        return playerRemove(player.getUniqueId(), permission);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerRemove(uniqueId, permission);
     }
 
     @Deprecated
     public boolean playerRemove(String world, @NotNull String playerName, String permission) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return playerRemove(player, permission);
@@ -222,17 +235,18 @@ public abstract class Permission {
      * @return true if the transient permission was successfully added, false otherwise.
      * @throws UnsupportedOperationException If the permission system does not support offline player transient permissions.
      */
-    public boolean playerAddTransient(@NotNull UUID uuid, String permission) {
-        Player player = plugin.getServer().getPlayer(uuid);
+    public boolean playerAddTransient(@NotNull UUID uuid, @NotNull String permission) {
+        @Nullable Player player = plugin.getServer().getPlayer(uuid);
+        String name = getName();
 
         if (player == null) {
-            throw new UnsupportedOperationException(getName() + ConstantUtil.NO_TRANSIENT_PERMISSIONS);
+            throw new UnsupportedOperationException(name + ConstantUtil.NO_TRANSIENT_PERMISSIONS);
         }
 
         if (player.isOnline()) {
             return playerAddTransient(player, permission);
         } else {
-            throw new UnsupportedOperationException(getName() + ConstantUtil.NO_TRANSIENT_PERMISSIONS);
+            throw new UnsupportedOperationException(name + ConstantUtil.NO_TRANSIENT_PERMISSIONS);
         }
     }
 
@@ -244,9 +258,9 @@ public abstract class Permission {
      * @param permission The transient permission node.
      * @return true if the transient permission was successfully added, false otherwise.
      */
-    public boolean playerAddTransient(@NotNull Player player, String permission) {
+    public boolean playerAddTransient(@NotNull Player player, @NotNull String permission) {
         try {
-            Iterator<PermissionAttachmentInfo> iterator = player.getEffectivePermissions().iterator();
+            @NotNull Iterator<PermissionAttachmentInfo> iterator = player.getEffectivePermissions().iterator();
             PermissionAttachmentInfo paInfo;
 
             while (iterator.hasNext()) {
@@ -258,7 +272,7 @@ public abstract class Permission {
                 }
             }
 
-            PermissionAttachment attach = player.addAttachment(plugin);
+            @NotNull PermissionAttachment attach = player.addAttachment(plugin);
             attach.setPermission(permission, true);
             return true;
         } catch (RuntimeException ex) {
@@ -275,17 +289,18 @@ public abstract class Permission {
      * @param permission The transient permission node.
      * @return true if the transient permission was successfully removed, false otherwise.
      */
-    public boolean playerRemoveTransient(@NotNull UUID uuid, String permission) {
-        Player player = plugin.getServer().getPlayer(uuid);
+    public boolean playerRemoveTransient(@NotNull UUID uuid, @NotNull String permission) {
+        @Nullable Player player = plugin.getServer().getPlayer(uuid);
+        String name = getName();
 
         if (player == null) {
-            throw new UnsupportedOperationException(getName() + ConstantUtil.NO_TRANSIENT_PERMISSIONS);
+            throw new UnsupportedOperationException(name + ConstantUtil.NO_TRANSIENT_PERMISSIONS);
         }
 
         if (player.isOnline()) {
             return playerRemoveTransient(player, permission);
         } else {
-            throw new UnsupportedOperationException(getName() + ConstantUtil.NO_TRANSIENT_PERMISSIONS);
+            throw new UnsupportedOperationException(name + ConstantUtil.NO_TRANSIENT_PERMISSIONS);
         }
     }
 
@@ -297,14 +312,15 @@ public abstract class Permission {
      * @param permission The transient permission node.
      * @return true if the transient permission was successfully removed, false otherwise.
      */
-    public boolean playerRemoveTransient(@NotNull Player player, String permission) {
-        Iterator<PermissionAttachmentInfo> iterator = player.getEffectivePermissions().iterator();
+    public boolean playerRemoveTransient(@NotNull Player player, @NotNull String permission) {
+        @NotNull Iterator<PermissionAttachmentInfo> iterator = player.getEffectivePermissions().iterator();
         PermissionAttachmentInfo paInfo;
 
         do {
             if (!iterator.hasNext()) {
                 return false;
             }
+
             paInfo = iterator.next();
         } while (paInfo.getAttachment() == null || !paInfo.getAttachment().getPlugin().equals(plugin));
 
@@ -350,17 +366,19 @@ public abstract class Permission {
 
     @Deprecated
     public boolean playerInGroup(@NotNull Player player, String group) {
-        return playerInGroup(player.getUniqueId(), group);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerInGroup(uniqueId, group);
     }
 
     @Deprecated
     public boolean playerInGroup(@NotNull OfflinePlayer player, String group) {
-        return playerInGroup(player.getUniqueId(), group);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerInGroup(uniqueId, group);
     }
 
     @Deprecated
     public boolean playerInGroup(@NotNull String playerName, String group) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return playerInGroup(player, group);
@@ -371,17 +389,19 @@ public abstract class Permission {
 
     @Deprecated
     public boolean playerInGroup(String world, @NotNull Player player, String group) {
-        return playerInGroup(player.getUniqueId(), group);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerInGroup(uniqueId, group);
     }
 
     @Deprecated
     public boolean playerInGroup(String world, @NotNull OfflinePlayer player, String group) {
-        return playerInGroup(player.getUniqueId(), group);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerInGroup(uniqueId, group);
     }
 
     @Deprecated
     public boolean playerInGroup(String world, @NotNull String playerName, String group) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return playerInGroup(player, group);
@@ -401,17 +421,19 @@ public abstract class Permission {
 
     @Deprecated
     public boolean playerAddGroup(@NotNull Player player, String group) {
-        return playerAddGroup(player.getUniqueId(), group);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerAddGroup(uniqueId, group);
     }
 
     @Deprecated
     public boolean playerAddGroup(@NotNull OfflinePlayer player, String group) {
-        return playerAddGroup(player.getUniqueId(), group);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerAddGroup(uniqueId, group);
     }
 
     @Deprecated
     public boolean playerAddGroup(@NotNull String playerName, String group) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return playerAddGroup(player, group);
@@ -422,17 +444,19 @@ public abstract class Permission {
 
     @Deprecated
     public boolean playerAddGroup(String world, @NotNull Player player, String group) {
-        return playerAddGroup(player.getUniqueId(), group);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerAddGroup(uniqueId, group);
     }
 
     @Deprecated
     public boolean playerAddGroup(String world, @NotNull OfflinePlayer player, String group) {
-        return playerAddGroup(player.getUniqueId(), group);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerAddGroup(uniqueId, group);
     }
 
     @Deprecated
     public boolean playerAddGroup(String world, @NotNull String playerName, String group) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return playerAddGroup(player, group);
@@ -452,17 +476,19 @@ public abstract class Permission {
 
     @Deprecated
     public boolean playerRemoveGroup(@NotNull Player player, String group) {
-        return playerRemoveGroup(player.getUniqueId(), group);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerRemoveGroup(uniqueId, group);
     }
 
     @Deprecated
     public boolean playerRemoveGroup(@NotNull OfflinePlayer player, String group) {
-        return playerRemoveGroup(player.getUniqueId(), group);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerRemoveGroup(uniqueId, group);
     }
 
     @Deprecated
     public boolean playerRemoveGroup(@NotNull String playerName, String group) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return playerRemoveGroup(player, group);
@@ -473,17 +499,19 @@ public abstract class Permission {
 
     @Deprecated
     public boolean playerRemoveGroup(String world, @NotNull Player player, String group) {
-        return playerRemoveGroup(player.getUniqueId(), group);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerRemoveGroup(uniqueId, group);
     }
 
     @Deprecated
     public boolean playerRemoveGroup(String world, @NotNull OfflinePlayer player, String group) {
-        return playerRemoveGroup(player.getUniqueId(), group);
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return playerRemoveGroup(uniqueId, group);
     }
 
     @Deprecated
     public boolean playerRemoveGroup(String world, @NotNull String playerName, String group) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return playerRemoveGroup(player, group);
@@ -502,17 +530,19 @@ public abstract class Permission {
 
     @Deprecated
     public String[] getPlayerGroups(@NotNull Player player) {
-        return getPlayerGroups(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerGroups(uniqueId);
     }
 
     @Deprecated
     public String[] getPlayerGroups(@NotNull OfflinePlayer player) {
-        return getPlayerGroups(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerGroups(uniqueId);
     }
 
     @Deprecated
     public String[] getPlayerGroups(@NotNull String playerName) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return getPlayerGroups(player);
@@ -523,17 +553,19 @@ public abstract class Permission {
 
     @Deprecated
     public String[] getPlayerGroups(String world, @NotNull Player player) {
-        return getPlayerGroups(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerGroups(uniqueId);
     }
 
     @Deprecated
     public String[] getPlayerGroups(String world, @NotNull OfflinePlayer player) {
-        return getPlayerGroups(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPlayerGroups(uniqueId);
     }
 
     @Deprecated
     public String[] getPlayerGroups(String world, @NotNull String playerName) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return getPlayerGroups(player);
@@ -552,17 +584,19 @@ public abstract class Permission {
 
     @Deprecated
     public String getPrimaryGroup(@NotNull Player player) {
-        return getPrimaryGroup(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPrimaryGroup(uniqueId);
     }
 
     @Deprecated
     public String getPrimaryGroup(@NotNull OfflinePlayer player) {
-        return getPrimaryGroup(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPrimaryGroup(uniqueId);
     }
 
     @Deprecated
     public String getPrimaryGroup(@NotNull String playerName) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return getPrimaryGroup(player);
@@ -573,17 +607,19 @@ public abstract class Permission {
 
     @Deprecated
     public String getPrimaryGroup(String world, @NotNull Player player) {
-        return getPrimaryGroup(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPrimaryGroup(uniqueId);
     }
 
     @Deprecated
     public String getPrimaryGroup(String world, @NotNull OfflinePlayer player) {
-        return getPrimaryGroup(player.getUniqueId());
+        @NotNull UUID uniqueId = player.getUniqueId();
+        return getPrimaryGroup(uniqueId);
     }
 
     @Deprecated
     public String getPrimaryGroup(String world, @NotNull String playerName) {
-        Player player = Bukkit.getPlayer(playerName);
+        @Nullable Player player = Bukkit.getPlayer(playerName);
 
         if (player != null) {
             return getPrimaryGroup(player);

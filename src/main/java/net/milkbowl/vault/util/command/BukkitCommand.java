@@ -1,5 +1,5 @@
 /*
- * Vault - a permissions, chat, & economy API to give plugins easy hooks into.
+ * Vulture - a server protection plugin designed for Minecraft 1.8.9 servers.
  * Copyright (C) 2024 Foulest (https://github.com/Foulest)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -45,7 +46,7 @@ class BukkitCommand extends org.bukkit.command.Command {
      * @param executor The CommandExecutor responsible for handling this command.
      * @param owner    The owning Plugin of this command.
      */
-    BukkitCommand(String label, CommandExecutor executor, Plugin owner) {
+    BukkitCommand(@NotNull String label, CommandExecutor executor, Plugin owner) {
         super(label);
         this.executor = executor;
         owningPlugin = owner;
@@ -77,7 +78,7 @@ class BukkitCommand extends org.bukkit.command.Command {
         success = executor.onCommand(sender, this, commandLabel, args);
 
         if (!success && !usageMessage.isEmpty()) {
-            for (String line : usageMessage.replace("<command>", commandLabel).split("\n")) {
+            for (@NotNull String line : usageMessage.replace("<command>", commandLabel).split("\n")) {
                 sender.sendMessage(line);
             }
         }
@@ -95,8 +96,8 @@ class BukkitCommand extends org.bukkit.command.Command {
     @Override
     public @NotNull List<String> tabComplete(@NotNull CommandSender sender,
                                              @NotNull String alias,
-                                             String[] args) {
-        List<String> completions = null;
+                                             String @NotNull [] args) {
+        @Nullable List<String> completions = null;
 
         if (completer != null) {
             completions = completer.onTabComplete(sender, this, alias, args);

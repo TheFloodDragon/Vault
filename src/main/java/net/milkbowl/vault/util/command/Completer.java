@@ -1,5 +1,5 @@
 /*
- * Vault - a permissions, chat, & economy API to give plugins easy hooks into.
+ * Vulture - a server protection plugin designed for Minecraft 1.8.9 servers.
  * Copyright (C) 2024 Foulest (https://github.com/Foulest)
  *
  * This program is free software: you can redistribute it and/or modify

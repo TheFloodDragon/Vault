@@ -1,5 +1,5 @@
 /*
- * Vault - a permissions, chat, & economy API to give plugins easy hooks into.
+ * Vulture - a server protection plugin designed for Minecraft 1.8.9 servers.
  * Copyright (C) 2024 Foulest (https://github.com/Foulest)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -35,8 +35,8 @@ import java.lang.annotation.Target;
 public @interface Command {
 
     /**
-     * @return The name of the command. If it is a sub command, then its values would be separated by periods.
-     * Example: 'test.subcommandname'
+     * @return The name of the command. If it is a sub command then its values would be separated by periods.
+     * i.e. a command that would be a sub command of test would be 'test.subcommandname'.
      */
     String name();
 

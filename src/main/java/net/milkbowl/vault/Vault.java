@@ -58,7 +58,7 @@ public class Vault extends JavaPlugin {
 
         // Loads SuperPerms as a backup in case no other permissions plugin is loaded.
         MessageUtil.log(Level.INFO, "Loading Backup Permission System...");
-        ServicesManager servicesManager = Bukkit.getServer().getServicesManager();
+        @NotNull ServicesManager servicesManager = Bukkit.getServer().getServicesManager();
         servicesManager.register(Permission.class, new SuperPerms(this), this, ServicePriority.Lowest);
 
         // Loads the Vault commands.
@@ -84,7 +84,7 @@ public class Vault extends JavaPlugin {
      * @param commands Command to load.
      */
     private void loadCommands(Object @NotNull ... commands) {
-        for (Object command : commands) {
+        for (@NotNull Object command : commands) {
             framework.registerCommands(command);
         }
     }
@@ -95,7 +95,7 @@ public class Vault extends JavaPlugin {
      * @param listeners Listeners to load.
      */
     public void loadListeners(Listener @NotNull ... listeners) {
-        for (Listener listener : listeners) {
+        for (@NotNull Listener listener : listeners) {
             Bukkit.getPluginManager().registerEvents(listener, this);
         }
     }

@@ -18,24 +18,25 @@
 package net.milkbowl.vault.economy;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.ToString;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Response object for Economy calls.
  *
  * @author Foulest
  */
-@Getter
-@ToString
+@Data
 @AllArgsConstructor
 @SuppressWarnings("unused")
 public class EconomyResponse {
 
     public final double amount;
     public final double balance;
-    public final ResponseType type;
-    public final String errorMessage;
+    public final @NotNull ResponseType type;
+    public final @NotNull String errorMessage;
 
     /**
      * Checks if the transaction was successful.

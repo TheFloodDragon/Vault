@@ -20,6 +20,8 @@ package net.milkbowl.vault.permission;
 import net.milkbowl.vault.util.ConstantUtil;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
@@ -35,7 +37,7 @@ public class SuperPerms extends Permission {
     }
 
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return "SuperPerms";
     }
 
@@ -45,8 +47,8 @@ public class SuperPerms extends Permission {
     }
 
     @Override
-    public boolean playerHas(UUID uuid, String permission) {
-        Player player = plugin.getServer().getPlayer(uuid);
+    public boolean playerHas(@NotNull UUID uuid, @NotNull String permission) {
+        @Nullable Player player = plugin.getServer().getPlayer(uuid);
         return player != null && player.hasPermission(permission);
     }
 
@@ -62,46 +64,53 @@ public class SuperPerms extends Permission {
 
     @Override
     public boolean groupHas(String group, String permission) {
-        throw new UnsupportedOperationException(getName() + ConstantUtil.NO_GROUP_PERMISSIONS);
+        @NotNull String name = getName();
+        throw new UnsupportedOperationException(name + ConstantUtil.NO_GROUP_PERMISSIONS);
     }
 
     @Override
     public boolean groupAdd(String group, String permission) {
-        throw new UnsupportedOperationException(getName() + ConstantUtil.NO_GROUP_PERMISSIONS);
+        @NotNull String name = getName();
+        throw new UnsupportedOperationException(name + ConstantUtil.NO_GROUP_PERMISSIONS);
     }
 
     @Override
     public boolean groupRemove(String group, String permission) {
-        throw new UnsupportedOperationException(getName() + ConstantUtil.NO_GROUP_PERMISSIONS);
+        @NotNull String name = getName();
+        throw new UnsupportedOperationException(name + ConstantUtil.NO_GROUP_PERMISSIONS);
     }
 
     @Override
-    public boolean playerInGroup(UUID uuid, String group) {
+    public boolean playerInGroup(@NotNull UUID uuid, String group) {
         return playerHas(uuid, "groups." + group);
     }
 
     @Override
     public boolean playerAddGroup(UUID uuid, String group) {
-        throw new UnsupportedOperationException(getName() + ConstantUtil.NO_GROUP_PERMISSIONS);
+        @NotNull String name = getName();
+        throw new UnsupportedOperationException(name + ConstantUtil.NO_GROUP_PERMISSIONS);
     }
 
     @Override
     public boolean playerRemoveGroup(UUID uuid, String group) {
-        throw new UnsupportedOperationException(getName() + ConstantUtil.NO_GROUP_PERMISSIONS);
+        @NotNull String name = getName();
+        throw new UnsupportedOperationException(name + ConstantUtil.NO_GROUP_PERMISSIONS);
     }
 
     @Override
     public String[] getPlayerGroups(UUID uuid) {
-        throw new UnsupportedOperationException(getName() + ConstantUtil.NO_GROUP_PERMISSIONS);
+        @NotNull String name = getName();
+        throw new UnsupportedOperationException(name + ConstantUtil.NO_GROUP_PERMISSIONS);
     }
 
     @Override
     public String getPrimaryGroup(UUID uuid) {
-        throw new UnsupportedOperationException(getName() + ConstantUtil.NO_GROUP_PERMISSIONS);
+        @NotNull String name = getName();
+        throw new UnsupportedOperationException(name + ConstantUtil.NO_GROUP_PERMISSIONS);
     }
 
     @Override
-    public String[] getGroups() {
+    public String @NotNull [] getGroups() {
         return new String[0];
     }
 

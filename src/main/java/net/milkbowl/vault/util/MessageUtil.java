@@ -17,8 +17,7 @@
  */
 package net.milkbowl.vault.util;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.Data;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -33,8 +32,8 @@ import java.util.logging.Logger;
  *
  * @author Foulest
  */
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class MessageUtil {
+@Data
+public class MessageUtil {
 
     private static final Logger logger = Bukkit.getLogger();
 
@@ -56,8 +55,8 @@ public final class MessageUtil {
      * @param sender  The player to send the message to.
      * @param message The message to send.
      */
-    public static void messagePlayer(CommandSender sender, String @NotNull ... message) {
-        for (String line : message) {
+    public static void messagePlayer(@NotNull CommandSender sender, String @NotNull ... message) {
+        for (@NotNull String line : message) {
             sender.sendMessage(colorize(line));
         }
     }
@@ -69,7 +68,7 @@ public final class MessageUtil {
      * @return The colorized message.
      */
     @Contract("_ -> new")
-    private static @NotNull String colorize(String message) {
+    private static @NotNull String colorize(@NotNull String message) {
         return ChatColor.translateAlternateColorCodes('&', message);
     }
 }

@@ -17,11 +17,11 @@
  */
 package net.milkbowl.vault.util;
 
-import lombok.AccessLevel;
 import lombok.Cleanup;
-import lombok.NoArgsConstructor;
+import lombok.Data;
 import net.milkbowl.vault.Vault;
 import org.bukkit.Bukkit;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedReader;
@@ -39,8 +39,8 @@ import java.util.regex.Pattern;
  *
  * @author Foulest
  */
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class UpdateUtil {
+@Data
+public class UpdateUtil {
 
     private static final String REPO_API_URL = "https://api.github.com/repos/Foulest/Vault/releases/latest";
     private static final String DOWNLOAD_URL = "https://github.com/Foulest/Vault/releases/latest";
@@ -52,8 +52,8 @@ public final class UpdateUtil {
         Vault plugin = Vault.getInstance();
 
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
-            String latestVersion = getLatestReleaseVersion();
-            String currentVersion = plugin.getDescription().getVersion();
+            @Nullable String latestVersion = getLatestReleaseVersion();
+            @NotNull String currentVersion = plugin.getDescription().getVersion();
 
             if (latestVersion != null) {
                 if (!latestVersion.equals(currentVersion)) {
@@ -76,13 +76,13 @@ public final class UpdateUtil {
     @SuppressWarnings("OverlyBroadCatchBlock")
     private static @Nullable String getLatestReleaseVersion() {
         try {
-            URL url = new URL(REPO_API_URL);
+            @NotNull URL url = new URL(REPO_API_URL);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
 
-            @Cleanup BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
+            @Cleanup @NotNull BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
             String inputLine;
-            StringBuilder content = new StringBuilder();
+            @NotNull StringBuilder content = new StringBuilder();
 
             while ((inputLine = in.readLine()) != null) {
                 content.append(inputLine);
@@ -102,10 +102,10 @@ public final class UpdateUtil {
      * @param jsonResponse The JSON response.
      * @return The version or null if not found.
      */
-    private static @Nullable String extractVersion(CharSequence jsonResponse) {
-        String versionRegex = "\"tag_name\":\"(.*?)\"";
-        Pattern pattern = Pattern.compile(versionRegex);
-        Matcher matcher = pattern.matcher(jsonResponse);
+    private static @Nullable String extractVersion(@NotNull CharSequence jsonResponse) {
+        @NotNull String versionRegex = "\"tag_name\":\"(.*?)\"";
+        @NotNull Pattern pattern = Pattern.compile(versionRegex);
+        @NotNull Matcher matcher = pattern.matcher(jsonResponse);
 
         if (matcher.find()) {
             return matcher.group(1);

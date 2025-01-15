@@ -28,6 +28,7 @@ import net.milkbowl.vault.util.command.CommandArgs;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -42,8 +43,8 @@ import java.util.*;
 public class VaultCmd {
 
     @SuppressWarnings("MethodMayBeStatic")
-    @Command(name = "vault", description = "Main command for Vault.",
-            permission = "vault.main", usage = "/vault")
+    @Command(name = "vault", permission = "vault.main",
+            description = "Main command for Vault.", usage = "/vault")
     public void onCommand(@NotNull CommandArgs args) {
         CommandSender sender = args.getSender();
 
@@ -68,19 +69,22 @@ public class VaultCmd {
                 }
 
                 // Uses generic methods to get the strings for registered services.
-                String registeredEcons = getRegisteredServicesString(Economy.class);
-                String registeredPerms = getRegisteredServicesString(Permission.class);
-                String registeredChats = getRegisteredServicesString(Chat.class);
+                @NotNull String registeredEcons = getRegisteredServicesString(Economy.class);
+                @NotNull String registeredPerms = getRegisteredServicesString(Permission.class);
+                @NotNull String registeredChats = getRegisteredServicesString(Chat.class);
 
                 // Uses generic methods to get the primary services.
-                Economy economy = getPrimaryService(Economy.class);
-                Permission permission = getPrimaryService(Permission.class);
-                Chat chat = getPrimaryService(Chat.class);
+                @Nullable Economy economy = getPrimaryService(Economy.class);
+                @Nullable Permission permission = getPrimaryService(Permission.class);
+                @Nullable Chat chat = getPrimaryService(Chat.class);
+
+                @NotNull PluginDescriptionFile description = Vault.getInstance().getDescription();
+                @NotNull String version = description.getVersion();
 
                 // Displays Vault information.
                 MessageUtil.messagePlayer(sender, "");
                 MessageUtil.messagePlayer(sender, "&eVault Information");
-                MessageUtil.messagePlayer(sender, "&7Version: &f" + Vault.getInstance().getDescription().getVersion());
+                MessageUtil.messagePlayer(sender, "&7Version: &f" + version);
                 MessageUtil.messagePlayer(sender, String.format("&7Economy: &f%s &7[%s]", economy == null ? "None" : economy.getName(), registeredEcons));
                 MessageUtil.messagePlayer(sender, String.format("&7Permission: &f%s &7[%s]", permission == null ? "None" : permission.getName(), registeredPerms));
                 MessageUtil.messagePlayer(sender, String.format("&7Chat: &f%s &7[%s]", chat == null ? "None" : chat.getName(), registeredChats));
@@ -98,7 +102,7 @@ public class VaultCmd {
                     return;
                 }
 
-                Collection<RegisteredServiceProvider<Economy>> econs = Bukkit.getServer().getServicesManager().getRegistrations(Economy.class);
+                @NotNull Collection<RegisteredServiceProvider<Economy>> econs = Bukkit.getServer().getServicesManager().getRegistrations(Economy.class);
 
                 // Checks if there are at least two economies loaded.
                 if (econs.size() < 2) {
@@ -106,8 +110,12 @@ public class VaultCmd {
                     return;
                 }
 
-                Map<String, Economy> economyMap = new HashMap<>();
-                econs.forEach(econ -> economyMap.put(econ.getProvider().getName().replace(" ", "").toLowerCase(Locale.ROOT), econ.getProvider()));
+                @NotNull Map<String, Economy> economyMap = new HashMap<>();
+
+                econs.forEach(econ -> {
+                    @NotNull Economy provider = econ.getProvider();
+                    economyMap.put(provider.getName().replace(" ", "").toLowerCase(Locale.ROOT), provider);
+                });
 
                 Economy econ1 = economyMap.get(args.getArgs(0).toLowerCase(Locale.ROOT));
                 Economy econ2 = economyMap.get(args.getArgs(1).toLowerCase(Locale.ROOT));
@@ -123,8 +131,8 @@ public class VaultCmd {
                 MessageUtil.messagePlayer(sender, "&eThis may take some time to convert; expect server lag.");
 
                 // Converts all player balances from the first economy to the second economy.
-                for (OfflinePlayer op : Bukkit.getServer().getOfflinePlayers()) {
-                    UUID uuid = op.getUniqueId();
+                for (@NotNull OfflinePlayer op : Bukkit.getServer().getOfflinePlayers()) {
+                    @NotNull UUID uuid = op.getUniqueId();
 
                     if (!econ1.hasAccount(uuid)) {
                         continue;
@@ -155,20 +163,21 @@ public class VaultCmd {
      * @param sender The command sender
      * @param args   The command arguments
      */
-    private static void handleHelp(@NotNull CommandSender sender, CommandArgs args) {
+    private static void handleHelp(@NotNull CommandSender sender, @NotNull CommandArgs args) {
         if (!sender.hasPermission("vault.main")) {
             MessageUtil.messagePlayer(sender, ConstantUtil.NO_PERMISSION);
             return;
         }
 
         // A list of available commands with their usages.
-        List<String> commands = Arrays.asList(
+        @NotNull List<String> commands = Arrays.asList(
                 "&f/vault info &7- Displays info about Vault.",
                 "&f/vault convert &7- Converts from one economy to another."
         );
 
         int itemsPerPage = 4;
-        int maxPages = (int) Math.ceil((double) commands.size() / itemsPerPage);
+        int size = commands.size();
+        int maxPages = (int) Math.ceil((double) size / itemsPerPage);
         int page = 1;
 
         if (args.length() > 1) {
@@ -186,7 +195,7 @@ public class VaultCmd {
         }
 
         int startIndex = (page - 1) * itemsPerPage;
-        int endIndex = Math.min(commands.size(), startIndex + itemsPerPage);
+        int endIndex = Math.min(size, startIndex + itemsPerPage);
 
         MessageUtil.messagePlayer(sender, "");
         MessageUtil.messagePlayer(sender, "&eVault Help &7(Page " + page + "/" + maxPages + ")");
@@ -207,16 +216,20 @@ public class VaultCmd {
      * @param <T>          The service class type
      * @return A string of all registered services for the given service class
      */
-    private static <T> @NotNull String getRegisteredServicesString(Class<T> serviceClass) {
-        StringBuilder services = new StringBuilder();
-        Collection<RegisteredServiceProvider<T>> registrations = Bukkit.getServer().getServicesManager().getRegistrations(serviceClass);
+    private static <T> @NotNull String getRegisteredServicesString(@NotNull Class<T> serviceClass) {
+        @NotNull StringBuilder services = new StringBuilder();
+        @NotNull Collection<RegisteredServiceProvider<T>> registrations = Bukkit.getServer().getServicesManager().getRegistrations(serviceClass);
 
-        for (RegisteredServiceProvider<T> registration : registrations) {
+        for (@NotNull RegisteredServiceProvider<T> registration : registrations) {
             if (services.length() > 0) {
                 services.append(", ");
             }
 
-            services.append(registration.getProvider().getClass().getSimpleName());
+            @NotNull T provider = registration.getProvider();
+            @NotNull Class<?> providerClass = provider.getClass();
+            @NotNull String simpleName = providerClass.getSimpleName();
+
+            services.append(simpleName);
         }
         return services.toString();
     }
@@ -228,8 +241,8 @@ public class VaultCmd {
      * @param <T>          The service class type
      * @return The primary service for the given service class
      */
-    private static <T> @Nullable T getPrimaryService(Class<T> serviceClass) {
-        RegisteredServiceProvider<T> rsp = Bukkit.getServer().getServicesManager().getRegistration(serviceClass);
+    private static <T> @Nullable T getPrimaryService(@NotNull Class<T> serviceClass) {
+        @Nullable RegisteredServiceProvider<T> rsp = Bukkit.getServer().getServicesManager().getRegistration(serviceClass);
         return rsp == null ? null : rsp.getProvider();
     }
 }

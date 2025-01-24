@@ -22,6 +22,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.ToString;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Response object for Economy calls.
@@ -36,7 +37,7 @@ public class EconomyResponse {
     public final double amount;
     public final double balance;
     public final @NotNull ResponseType type;
-    public final @NotNull String errorMessage;
+    public final @Nullable String errorMessage;
 
     /**
      * Checks if the transaction was successful.

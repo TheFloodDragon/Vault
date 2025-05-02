@@ -68,7 +68,8 @@ public abstract class Permission {
     }
 
     @Deprecated
-    public static boolean has(@NotNull CommandSender sender, String permission) {
+    @SuppressWarnings("MethodMayBeStatic")
+    public boolean has(@NotNull CommandSender sender, String permission) {
         return sender.hasPermission(permission);
     }
 

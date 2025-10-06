@@ -22,7 +22,6 @@ import net.milkbowl.vault.cmds.VaultCmd;
 import net.milkbowl.vault.permission.Permission;
 import net.milkbowl.vault.permission.SuperPerms;
 import net.milkbowl.vault.util.MessageUtil;
-import net.milkbowl.vault.util.UpdateUtil;
 import net.milkbowl.vault.util.command.CommandFramework;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
@@ -64,9 +63,6 @@ public class Vault extends JavaPlugin {
         // Loads the Vault commands.
         MessageUtil.log(Level.INFO, "Loading Commands...");
         loadCommands(new VaultCmd());
-
-        // Schedules the update checker.
-        Bukkit.getScheduler().runTaskLater(this, UpdateUtil::checkForUpdates, 20L);
 
         MessageUtil.log(Level.INFO, "Loaded successfully.");
     }
